@@ -3,12 +3,21 @@
   grid-template-rows: 1fr 0.1fr 1fr;
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
-.name-wrapper {
+.name-wrapper,
+.title-wrapper {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  font-size: 0.6rem;
+}
+
+.title-wrapper {
+  align-items: flex-start;
+  padding-top: 0.5rem;
+  font-size: 0.7rem;
 }
 
 .underline {
@@ -17,9 +26,31 @@
   justify-self: center;
 }
 
-.title-wrapper {
+input {
+  font-size: 0.7rem;
+  outline: none;
+  background-color: transparent;
+  text-align: center;
+  width: 70%;
+  height: 50%;
+}
+
+.name-input {
+  font-size: 0.8rem;
+}
+
+.name-container,
+.title-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 1rem;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.icons-wrapper {
+  position: absolute;
+  height: 25%;
+  width: 100%;
+  bottom: 0;
 }
