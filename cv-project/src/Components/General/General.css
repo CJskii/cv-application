@@ -1,0 +1,25 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: 1fr 0.1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.name-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.underline {
+  border-bottom: 2px solid black;
+  width: 20%;
+  justify-self: center;
+}
+
+.title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 1rem;
+}

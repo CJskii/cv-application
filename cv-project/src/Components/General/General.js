@@ -1,7 +1,26 @@
-import React, { Components } from "react";
+import React, { Component } from "react";
+import Name from "./Name";
+import Underline from "./Underline";
+import Title from "./Title";
+import "./General.css";
 
-class General extends Components {
+class General extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: { name: "MICHAEL JORDAN", title: "CREATIVE DIRECTOR" },
+    };
+  }
   render() {
-    return <div className="general"></div>;
+    const { user } = this.state;
+    return (
+      <div className="wrapper">
+        <Name user={user} />
+        <Underline />
+        <Title user={user} />
+      </div>
+    );
   }
 }
+
+export default General;
