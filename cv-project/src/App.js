@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import General from "./Components/General/General";
+import Card from "./Components/Card/Card";
 import React, { Component } from "react";
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           <div className="cv-container">
             <div className="card">
               {/* Image, Contact, Education, References */}
+              <Card className="card" />
             </div>
             <div className="name">
               {/* Name, title */}

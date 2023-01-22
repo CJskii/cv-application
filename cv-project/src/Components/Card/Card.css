@@ -1,0 +1,122 @@
+.profile-picture {
+  width: 125px;
+  height: 125px;
+  background-color: blue;
+  border-radius: 100px;
+  border: 2px solid white;
+}
+
+.card-wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  font-size: 0.5rem;
+}
+
+.contact-container,
+.education-container,
+.links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.contact-wrapper,
+.education-wrapper,
+.links-wrapper {
+  width: 80%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.education-wrapper {
+  padding-bottom: 0.6rem;
+}
+
+.card-divider {
+  border-bottom: 1px solid white;
+  width: 50%;
+  margin-bottom: 0.3rem;
+}
+
+.card-header {
+  font-size: 0.7rem;
+  padding-bottom: 0.2rem;
+  text-align: left;
+  width: 80%;
+  position: relative;
+}
+.maps-icon {
+  content: url(../Img/maps.svg);
+}
+
+.phone-icon {
+  content: url(../Img/telephone.svg);
+}
+
+.email-icon {
+  content: url(../Img/mail.svg);
+}
+
+.maps-icon,
+.phone-icon,
+.email-icon,
+.add,
+.remove {
+  width: 20px;
+  height: 20px;
+}
+
+.uni {
+  font-style: italic;
+}
+
+.country,
+.telephone,
+.email {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.education-title {
+  font-weight: bold;
+}
+
+.contact-form,
+.education-form {
+  position: absolute;
+  border: 1px solid black;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #57cc99;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+  z-index: 1;
+  bottom: 0;
+}
+
+.education-form {
+  height: fit-content;
+}
+
+.contact-form > label {
+  font-size: 0.6rem;
+}
+
+.add {
+  content: url(../Img/add.svg);
+}
+
+.remove {
+  content: url(../Img/remove.svg);
+}
