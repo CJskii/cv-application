@@ -4,6 +4,8 @@
   background-color: blue;
   border-radius: 100px;
   border: 2px solid white;
+  display: flex;
+  justify-content: center;
 }
 
 .card-wrapper {
@@ -88,7 +90,8 @@
 }
 
 .contact-form,
-.education-form {
+.education-form,
+.links-form {
   position: absolute;
   border: 1px solid black;
   height: 200px;
@@ -119,4 +122,31 @@
 
 .remove {
   content: url(../Img/remove.svg);
+}
+
+.link-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  word-break: break-all;
+}
+
+.github-link-icon {
+  content: url(../Img/github2.svg);
+}
+
+.linkedin-link-icon {
+  content: url(../Img/linkedin.svg);
+}
+
+.twitter-link-icon {
+  content: url(../Img/twitter.svg);
+}
+
+.github-link-icon,
+.linkedin-link-icon,
+.twitter-link-icon {
+  width: 25px;
+  height: 25px;
 }

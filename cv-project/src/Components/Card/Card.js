@@ -10,11 +10,6 @@ class Card extends Component {
 
     this.state = {
       photo: "your photo here",
-      links: {
-        github: "YourGithubAddress.com",
-        linkedin: "YourLinkedInAddress.com",
-        twitter: "twitter.com/yourhandle",
-      },
     };
   }
 

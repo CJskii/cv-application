@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Draggable from "react-draggable";
 
 class Education extends Component {
   constructor(props) {
@@ -53,47 +54,51 @@ class Education extends Component {
     let count = this.state.count;
     if (count === 1) {
       return (
-        <form
-          className="education-form"
-          autoComplete="off"
-          onSubmit={(e) => this.handleFormSubmit(e)}
-        >
-          <i className="add" onClick={this.addEducation}></i>
-          <label htmlFor="title">Degree</label>
-          <input id="title" className="title-form t1" type="text" />
-          <label htmlFor="dates">Dates</label>
-          <input id="dates" className="dates-form d1" type="text" />
-          <label htmlFor="uni">University/School</label>
-          <input id="uni" className="uni-form u1" type="text" />
-          <button type="submit" className="submitBtn btn">
-            Submit
-          </button>
-        </form>
+        <Draggable>
+          <form
+            className="education-form"
+            autoComplete="off"
+            onSubmit={(e) => this.handleFormSubmit(e)}
+          >
+            <i className="add" onClick={this.addEducation}></i>
+            <label htmlFor="title">Degree</label>
+            <input id="title" className="title-form t1" type="text" />
+            <label htmlFor="dates">Dates</label>
+            <input id="dates" className="dates-form d1" type="text" />
+            <label htmlFor="uni">University/School</label>
+            <input id="uni" className="uni-form u1" type="text" />
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+          </form>
+        </Draggable>
       );
     } else {
       return (
-        <form
-          className="education-form"
-          autoComplete="off"
-          onSubmit={(e) => this.handleFormSubmit(e)}
-        >
-          <i className="remove" onClick={this.removeEducation}></i>
-          <label htmlFor="title1">Degree 1</label>
-          <input id="title1" className="title-form t1" type="text" />
-          <label htmlFor="dates1">Dates 1</label>
-          <input id="dates1" className="dates-form d1" type="text" />
-          <label htmlFor="uni1">University/School 1</label>
-          <input id="uni1" className="uni-form u1" type="text" />
-          <label htmlFor="title2">Degree 2</label>
-          <input id="title2" className="title-form t2" type="text" />
-          <label htmlFor="dates2">Dates 2</label>
-          <input id="dates2" className="dates-form d2" type="text" />
-          <label htmlFor="uni2">University/School 2</label>
-          <input id="uni2" className="uni-form u2" type="text" />
-          <button type="submit" className="submitBtn btn">
-            Submit
-          </button>
-        </form>
+        <Draggable>
+          <form
+            className="education-form"
+            autoComplete="off"
+            onSubmit={(e) => this.handleFormSubmit(e)}
+          >
+            <i className="remove" onClick={this.removeEducation}></i>
+            <label htmlFor="title1">Degree 1</label>
+            <input id="title1" className="title-form t1" type="text" />
+            <label htmlFor="dates1">Dates 1</label>
+            <input id="dates1" className="dates-form d1" type="text" />
+            <label htmlFor="uni1">University/School 1</label>
+            <input id="uni1" className="uni-form u1" type="text" />
+            <label htmlFor="title2">Degree 2</label>
+            <input id="title2" className="title-form t2" type="text" />
+            <label htmlFor="dates2">Dates 2</label>
+            <input id="dates2" className="dates-form d2" type="text" />
+            <label htmlFor="uni2">University/School 2</label>
+            <input id="uni2" className="uni-form u2" type="text" />
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+          </form>
+        </Draggable>
       );
     }
   }
