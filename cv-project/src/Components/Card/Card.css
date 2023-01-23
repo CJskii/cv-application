@@ -144,9 +144,14 @@
   content: url(../Img/twitter.svg);
 }
 
+.portfolio-link-icon {
+  content: url(../Img/portfolio32x32.png);
+}
+
 .github-link-icon,
 .linkedin-link-icon,
-.twitter-link-icon {
-  width: 25px;
-  height: 25px;
+.twitter-link-icon,
+.portfolio-link-icon {
+  width: 20px;
+  height: 20px;
 }

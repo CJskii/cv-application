@@ -85,8 +85,9 @@ class Contact extends Component {
           this.setState({ showEditBtn: false });
         }}
       >
+        <span className="card-header">CONTACT</span>
+        {this.state.showEditBtn && this.showEditButton()}
         <div className="contact-wrapper">
-          <span className="card-header">CONTACT</span>
           <div className="card-divider"></div>
           <div className="country">
             <i className="maps-icon"></i>
@@ -100,7 +101,7 @@ class Contact extends Component {
             <i className="email-icon"></i>
             {contact.email}
           </div>
-          {this.state.showEditBtn && this.showEditButton()}
+
           {this.state.showForm && this.displayForm()}
         </div>
       </div>

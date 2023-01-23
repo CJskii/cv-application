@@ -10,6 +10,7 @@ class Links extends Component {
         github: "YourGithubAddress.com",
         linkedin: "YourLinkedInAddress.com",
         twitter: "twitter.com/yourhandle",
+        portfolio: "linktoportfolio.com",
       },
       showEditBtn: false,
       showForm: false,
@@ -30,7 +31,6 @@ class Links extends Component {
   }
 
   showForm() {
-    console.log("click");
     this.setState({
       showForm: true,
     });
@@ -38,15 +38,16 @@ class Links extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    console.log("submit");
     let github = document.querySelector(".github-input");
     let linkedin = document.querySelector(".linkedin-input");
     let twitter = document.querySelector(".twitter-input");
+    let portfolio = document.querySelector(".portfolio-input");
     this.setState({
       links: {
         github: github.value,
         linkedin: linkedin.value,
         twitter: twitter.value,
+        portfolio: portfolio.value,
       },
       showForm: false,
     });
@@ -64,8 +65,10 @@ class Links extends Component {
           <input id="github" className="github-input" type="text" />
           <label htmlFor="linkedin">LinkedIn</label>
           <input id="linkedin" className="linkedin-input" type="text" />
-          <label htmlFor="uni">Twitter</label>
+          <label htmlFor="twitter">Twitter</label>
           <input id="twitter" className="twitter-input" type="text" />
+          <label htmlFor="portfolio">Portfolio</label>
+          <input id="portfolio" className="portfolio-input" type="text" />
           <button type="twitter" className="submitBtn btn">
             Submit
           </button>
@@ -87,8 +90,9 @@ class Links extends Component {
           this.setState({ showEditBtn: false });
         }}
       >
+        <span className="card-header">MY LINKS</span>
+        {this.state.showEditBtn && this.showEditButton()}
         <div className="links-wrapper">
-          <span className="card-header">LINKS</span>
           <div className="card-divider"></div>
           {links.github != "" ? (
             <div className="link-wrapper">
@@ -108,7 +112,13 @@ class Links extends Component {
               <div className="twitter">{links.twitter}</div>
             </div>
           ) : null}
-          {this.state.showEditBtn && this.showEditButton()}
+          {links.twitter != "" ? (
+            <div className="link-wrapper">
+              <i className="portfolio-link-icon"></i>
+              <div className="portfolio">{links.portfolio}</div>
+            </div>
+          ) : null}
+
           {this.state.showForm && this.displayForm()}
         </div>
       </div>
