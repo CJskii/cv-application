@@ -3,7 +3,6 @@
 }
 
 .profile-container,
-.work-container,
 .skills-container {
   position: relative;
 }
@@ -66,6 +65,7 @@
 
 .work-content-wrapper {
   padding-bottom: 0.4rem;
+  position: relative;
 }
 
 .work-info {
@@ -93,6 +93,14 @@
   font-family: Roboto;
 }
 
+.work-icons {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  bottom: 50;
+}
+
 /* SKILLS */
 
 .skills-content {
@@ -110,4 +118,54 @@
   font-weight: 600;
   justify-self: flex-start;
   align-items: center;
+}
+
+/* FORM */
+
+.profile-form,
+.work-form {
+  position: absolute;
+  border: 1px solid black;
+  min-height: 200px;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #57cc99;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+}
+
+textarea {
+  height: 300px;
+  width: 300px;
+  color: black;
+  margin: 0.5rem;
+  resize: none;
+}
+
+#desc-work {
+  height: 200px;
+}
+
+#desc-work::placeholder,
+textarea::placeholder {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.work-form > input {
+  width: 250px;
+  height: 25px;
+  font-size: 0.7rem;
+}
+
+.work-form > label {
+  padding: 0.2rem 0;
 }

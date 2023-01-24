@@ -9,15 +9,24 @@ class Profile extends Component {
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official!",
       },
       showButton: false,
+      showForm: false,
     };
 
     this.showButton = this.showButton.bind(this);
     this.hideButton = this.hideButton.bind(this);
+    this.showForm = this.showForm.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   showButton() {
     this.setState({
       showButton: true,
+    });
+  }
+
+  showForm() {
+    this.setState({
+      showForm: true,
     });
   }
 
@@ -27,8 +36,37 @@ class Profile extends Component {
     });
   }
 
+  submitForm(e) {
+    e.preventDefault();
+    let textarea = document.getElementById("text-area");
+    this.setState({
+      description: { text: textarea.value },
+      showForm: false,
+    });
+  }
+
   button() {
-    return <button className="editBtn btn">EDIT</button>;
+    return (
+      <button className="editBtn btn" onClick={this.showForm}>
+        EDIT
+      </button>
+    );
+  }
+
+  editForm() {
+    return (
+      <form
+        className="profile-form"
+        autoComplete="off"
+        onSubmit={(e) => this.submitForm(e)}
+      >
+        <label htmlFor="text-area">Your profile description</label>
+        <textarea id="text-area" type="text" />
+        <button type="submit" className="submitBtn btn">
+          Submit
+        </button>
+      </form>
+    );
   }
 
   render() {
@@ -49,6 +87,7 @@ class Profile extends Component {
 
           <div className="profile-text">{description.text}</div>
         </div>
+        {this.state.showForm && this.editForm()}
       </div>
     );
   }
