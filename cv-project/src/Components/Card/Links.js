@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Draggable from "react-draggable";
+//import Draggable from "react-draggable";
 
 class Links extends Component {
   constructor(props) {
@@ -55,25 +55,25 @@ class Links extends Component {
 
   editForm() {
     return (
-      <Draggable>
-        <form
-          className="links-form"
-          autoComplete="off"
-          onSubmit={(e) => this.handleFormSubmit(e)}
-        >
-          <label htmlFor="github">Github</label>
-          <input id="github" className="github-input" type="text" />
-          <label htmlFor="linkedin">LinkedIn</label>
-          <input id="linkedin" className="linkedin-input" type="text" />
-          <label htmlFor="twitter">Twitter</label>
-          <input id="twitter" className="twitter-input" type="text" />
-          <label htmlFor="portfolio">Portfolio</label>
-          <input id="portfolio" className="portfolio-input" type="text" />
-          <button type="twitter" className="submitBtn btn">
-            Submit
-          </button>
-        </form>
-      </Draggable>
+      //<Draggable>
+      <form
+        className="links-form"
+        autoComplete="off"
+        onSubmit={(e) => this.handleFormSubmit(e)}
+      >
+        <label htmlFor="github">Github</label>
+        <input id="github" className="github-input" type="text" />
+        <label htmlFor="linkedin">LinkedIn</label>
+        <input id="linkedin" className="linkedin-input" type="text" />
+        <label htmlFor="twitter">Twitter</label>
+        <input id="twitter" className="twitter-input" type="text" />
+        <label htmlFor="portfolio">Portfolio</label>
+        <input id="portfolio" className="portfolio-input" type="text" />
+        <button type="twitter" className="submitBtn btn">
+          Submit
+        </button>
+      </form>
+      // </Draggable>
     );
   }
 
@@ -94,25 +94,25 @@ class Links extends Component {
         {this.state.showEditBtn && this.showEditButton()}
         <div className="links-wrapper">
           <div className="card-divider"></div>
-          {links.github != "" ? (
+          {links.github !== "" ? (
             <div className="link-wrapper">
               <i className="github-link-icon"></i>
               <div className="github-link">{links.github}</div>
             </div>
           ) : null}
-          {links.linkedin != "" ? (
+          {links.linkedin !== "" ? (
             <div className="link-wrapper">
               <i className="linkedin-link-icon"></i>
               <div className="linkedin">{links.linkedin}</div>
             </div>
           ) : null}
-          {links.twitter != "" ? (
+          {links.twitter !== "" ? (
             <div className="link-wrapper">
               <i className="twitter-link-icon"></i>
               <div className="twitter">{links.twitter}</div>
             </div>
           ) : null}
-          {links.twitter != "" ? (
+          {links.twitter !== "" ? (
             <div className="link-wrapper">
               <i className="portfolio-link-icon"></i>
               <div className="portfolio">{links.portfolio}</div>
