@@ -11,7 +11,7 @@
 .card-wrapper {
   height: 100%;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: 1fr, 0.5fr, 1fr, 1fr;
   font-size: 0.5rem;
 }
 
@@ -35,6 +35,19 @@
   gap: 5px;
 }
 
+.country,
+.telephone,
+.email,
+.education-title {
+  font-family: SofiaSerif;
+  font-size: 0.5rem;
+}
+
+.uni,
+.dates {
+  font-family: Roboto;
+}
+
 .education-wrapper {
   padding-bottom: 0.6rem;
 }
@@ -51,6 +64,7 @@
   text-align: left;
   width: 80%;
   position: relative;
+  font-family: Monsterrat;
 }
 .maps-icon {
   content: url(../Img/maps.svg);
@@ -87,6 +101,7 @@
 
 .education-title {
   font-weight: bold;
+  font-size: 0.6rem;
 }
 
 .contact-form,
@@ -154,4 +169,9 @@
 .portfolio-link-icon {
   width: 20px;
   height: 20px;
+}
+
+.link-wrapper {
+  padding-bottom: 0.3rem;
+  font-family: Roboto;
 }
