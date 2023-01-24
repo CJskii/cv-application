@@ -3,19 +3,13 @@ import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import General from "./Components/General/General";
 import Card from "./Components/Card/Card";
+import Main from "./Components/Main/Main";
 import React, { Component } from "react";
-import { Helmet } from "react-helmet";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Helmet>
-          <meta charSet="utf-8"></meta>
-          <title>CV-Generator App</title>
-          <link rel="canonical" />
-          <meta name="description" content="CV Application" />
-        </Helmet>
         <Navbar />
         <div className="cv-wrapper">
           <div className="cv-container">
@@ -29,6 +23,7 @@ class App extends Component {
             </div>
             <div className="profile">
               {/* Description, Work experience, skills */}
+              <Main />
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Profile from "./Profile";
 import Work from "./Work";
 import Skills from "./Skills";
+import "./Main.css";
 
 class Main extends Component {
   constructor() {
@@ -9,7 +10,13 @@ class Main extends Component {
   }
 
   render() {
-    return <div className="main-wrapper"></div>;
+    return (
+      <div className="main-wrapper">
+        <Profile />
+        <Work />
+        <Skills />
+      </div>
+    );
   }
 }
 

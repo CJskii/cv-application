@@ -27,11 +27,55 @@ class Skills extends Component {
       skill20: "ExpressJS",
       skill21: "Django and Flask",
       skill22: "Analytical skills",
+      showButton: false,
     };
+
+    this.showButton = this.showButton.bind(this);
+    this.hideButton = this.hideButton.bind(this);
+  }
+
+  showButton() {
+    this.setState({
+      showButton: true,
+    });
+  }
+
+  hideButton() {
+    this.setState({
+      showButton: false,
+    });
+  }
+
+  button() {
+    return <button className="editBtn btn">EDIT</button>;
   }
 
   render() {
-    return <div className="skills-container"></div>;
+    return (
+      <div
+        className="skills-container"
+        onMouseEnter={this.showButton}
+        onMouseLeave={this.hideButton}
+      >
+        {this.state.showButton && this.button()}
+        <div className="skills-wrapper">
+          <div className="skills-header">
+            SKILLS
+            <div className="skills-divider"></div>
+          </div>
+          <div className="skills-content">
+            <span>Web development</span>
+            <span>Javascript</span>
+            <span>React</span>
+            <span>NodeJS</span>
+            <span>Git version control</span>
+            <span>Database</span>
+          </div>
+
+          {/* <div className="skills-text">{description.text}</div> */}
+        </div>
+      </div>
+    );
   }
 }
 
