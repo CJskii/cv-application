@@ -6,55 +6,8 @@ class Work extends Component {
     super();
 
     this.state = {
-      work: {
-        title: "",
-        company: "",
-        location: "",
-        dates: "",
-        description: "",
-        id: uniqid(),
-        showButton: false,
-        showForm: false,
-        showDeleteButton: false,
-      },
-      jobs: [
-        {
-          title: "Senior manager",
-          company: "LEO Company",
-          location: "Paris - France",
-          dates: "JAN 2016 - DEC 2019",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
-          id: uniqid(),
-          showButton: false,
-          showForm: false,
-          showDeleteButton: false,
-        },
-        {
-          title: "Senior manager",
-          company: "LEO Company",
-          location: "Paris - France",
-          dates: "JAN 2016 - DEC 2019",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
-          id: uniqid(),
-          showButton: false,
-          showForm: false,
-          showDeleteButton: false,
-        },
-        {
-          title: "Senior manager",
-          company: "LEO Company",
-          location: "Paris - France",
-          dates: "JAN 2016 - DEC 2019",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
-          id: uniqid(),
-          showButton: false,
-          showForm: false,
-          showDeleteButton: false,
-        },
-      ],
+      work: this.workTemplate(),
+      jobs: [this.workTemplate(), this.workTemplate(), this.workTemplate()],
       count: 3,
     };
 
@@ -64,6 +17,22 @@ class Work extends Component {
     this.showDeleteButton = this.showDeleteButton.bind(this);
     this.hideDeleteButton = this.hideDeleteButton.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
+    this.addJob = this.handleAddingTaks.bind(this);
+  }
+
+  workTemplate() {
+    return {
+      title: "Senior Manager",
+      company: "YOUR Company",
+      location: "Paris - France",
+      dates: "JAN 2020 - DEC 2023",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
+      id: uniqid(),
+      showButton: false,
+      showForm: false,
+      showDeleteButton: false,
+    };
   }
 
   showButton(id) {
@@ -93,7 +62,6 @@ class Work extends Component {
   }
 
   showDeleteButton(id) {
-    console.log("delete show");
     this.setState((prevState) => {
       let jobs = this.state.jobs;
       let work = jobs.find((work) => work.id === id);
@@ -103,7 +71,6 @@ class Work extends Component {
   }
 
   hideDeleteButton(id) {
-    console.log("delete hide");
     this.setState((prevState) => {
       let jobs = this.state.jobs;
       let work = jobs.find((work) => work.id === id);
@@ -124,6 +91,22 @@ class Work extends Component {
     this.setState({
       jobs: this.state.jobs.filter((task) => task.id !== id),
       count: this.state.count - 1,
+    });
+  }
+
+  addButton() {
+    return (
+      <button onClick={this.addJob} className="addBtn btn">
+        ADD
+      </button>
+    );
+  }
+
+  handleAddingTaks() {
+    this.setState({
+      work: this.workTemplate(),
+      jobs: this.state.jobs.concat(this.state.work),
+      count: this.state.count + 1,
     });
   }
 
@@ -205,10 +188,6 @@ class Work extends Component {
                   this.button(work.id)}
                 {this.state.jobs.find((job) => job.id === work.id)
                   .showDeleteButton && this.deleteButton(work.id)}
-                {/* <div className="work-icons">
-                  <i className="add-work add"></i>
-                  <i className="remove-work remove"></i>
-                </div> */}
                 {this.state.jobs.find((job) => job.id === work.id).showForm &&
                   this.form(work.id)}
                 <div className="work-content">
@@ -225,6 +204,7 @@ class Work extends Component {
             );
           })}
         </div>
+        {this.state.count < 3 && this.addButton()}
       </div>
     );
   }

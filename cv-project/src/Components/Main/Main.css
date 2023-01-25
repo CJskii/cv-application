@@ -3,7 +3,8 @@
 }
 
 .profile-container,
-.skills-container {
+.skills-container,
+.work-container {
   position: relative;
 }
 
@@ -170,10 +171,12 @@ textarea::placeholder {
   padding: 0.2rem 0;
 }
 
+/* WORK BUTTONS */
+
 .deleteBtn {
   position: absolute;
   right: 0;
-  bottom: 30%;
+  bottom: 25%;
 }
 
 .deleteBtn:hover {
@@ -182,4 +185,10 @@ textarea::placeholder {
 
 .deleteBtn:active {
   top: 37%;
+}
+
+.addBtn {
+  position: absolute;
+  top: 0;
+  right: 6%;
 }
