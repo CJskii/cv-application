@@ -150,11 +150,11 @@ textarea {
   resize: none;
 }
 
-#desc-work {
+#descwork {
   height: 200px;
 }
 
-#desc-work::placeholder,
+#descwork::placeholder,
 textarea::placeholder {
   font-size: 0.8rem;
   text-align: center;

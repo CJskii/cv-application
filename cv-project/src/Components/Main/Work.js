@@ -6,7 +6,17 @@ class Work extends Component {
     super();
 
     this.state = {
-      work: [
+      work: {
+        title: "",
+        company: "",
+        location: "",
+        dates: "",
+        description: "",
+        id: uniqid(),
+        showButton: false,
+        showForm: false,
+      },
+      jobs: [
         {
           title: "Senior manager",
           company: "LEO Company",
@@ -51,19 +61,19 @@ class Work extends Component {
 
   showButton(id) {
     this.setState((prevState) => {
-      let works = this.state.work;
-      let work = works.find((work) => work.id === id);
+      let jobs = this.state.jobs;
+      let work = jobs.find((work) => work.id === id);
       work.showButton = true;
-      return { works };
+      return { jobs };
     });
   }
 
   hideButton(id) {
     this.setState((prevState) => {
-      let works = this.state.work;
-      let work = works.find((work) => work.id === id);
+      let jobs = this.state.jobs;
+      let work = jobs.find((work) => work.id === id);
       work.showButton = false;
-      return { works };
+      return { jobs };
     });
   }
 
@@ -77,19 +87,19 @@ class Work extends Component {
 
   showForm(id) {
     this.setState((prevState) => {
-      let works = this.state.work;
-      let work = works.find((work) => work.id === id);
+      let jobs = this.state.jobs;
+      let work = jobs.find((work) => work.id === id);
       work.showForm = true;
-      return { works };
+      return { jobs };
     });
   }
 
-  form() {
+  form(id) {
     return (
       <form
         className="work-form"
         autoComplete="off"
-        onSubmit={(e) => this.onSubmit(e)}
+        onSubmit={(e) => this.handleEditJob(e, id)}
       >
         <label htmlFor="title">Title</label>
         <input id="title" type="text" placeholder="Enter job title" />
@@ -99,9 +109,9 @@ class Work extends Component {
         <input id="location" type="text" placeholder="Enter location name" />
         <label htmlFor="dates">Dates</label>
         <input id="dates" type="text" placeholder="JAN 2019 - DEC 2022" />
-        <label htmlFor="desc-work">Description</label>
+        <label htmlFor="descwork">Description</label>
         <textarea
-          id="desc-work"
+          id="descwork"
           type="text"
           placeholder="Enter short description of your duties..."
         />
@@ -112,10 +122,30 @@ class Work extends Component {
     );
   }
 
-  onSubmit(e) {
+  handleEditJob(e, id) {
     e.preventDefault();
-    console.log(e.target.children);
+    this.setState((prevState) => {
+      let jobs = this.state.jobs;
+      let job = jobs.find((job) => job.id === id);
+      job.title = e.target.elements.title.value;
+      job.company = e.target.elements.company.value;
+      job.location = e.target.elements.location.value;
+      job.dates = e.target.elements.dates.value;
+      job.description = e.target.elements.descwork.value;
+      job.showForm = false;
+      return { jobs };
+    });
   }
+
+  showAddBtn() {}
+
+  hideAddBtn() {}
+
+  showRemoveBtn() {}
+
+  hideRemoveBtn() {}
+
+  handleAddJob() {}
 
   render() {
     return (
@@ -125,7 +155,7 @@ class Work extends Component {
             WORK EXPERIENCE
             <div className="work-divider"></div>
           </div>
-          {this.state.work.map((work, index) => {
+          {this.state.jobs.map((work, index) => {
             return (
               <div
                 className="work-content-wrapper"
@@ -133,18 +163,20 @@ class Work extends Component {
                 onMouseEnter={() => this.showButton(work.id)}
                 onMouseLeave={() => this.hideButton(work.id)}
               >
-                {this.state.work.find((job) => job.id === work.id).showButton &&
+                {this.state.jobs.find((job) => job.id === work.id).showButton &&
                   this.button(work.id)}
                 {/* <div className="work-icons">
                   <i className="add-work add"></i>
                   <i className="remove-work remove"></i>
                 </div> */}
-                {this.state.work.find((job) => job.id === work.id).showForm &&
-                  this.form()}
+                {this.state.jobs.find((job) => job.id === work.id).showForm &&
+                  this.form(work.id)}
                 <div className="work-content">
                   <div className="work-info">
                     <div className="work-title">{work.title}</div>
-                    <span className="work-span">{work.company}</span>
+                    <span className="work-span">
+                      {work.company}, {work.location}
+                    </span>
                   </div>
                   <span className="work-dates">{work.dates}</span>
                 </div>
