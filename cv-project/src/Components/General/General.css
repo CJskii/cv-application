@@ -36,6 +36,9 @@ input {
 .editBtn {
   position: absolute;
   right: 0;
+}
+
+.btn {
   margin-right: 0.2rem;
   margin-top: 0.2rem;
   height: 30px;

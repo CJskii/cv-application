@@ -169,3 +169,17 @@ textarea::placeholder {
 .work-form > label {
   padding: 0.2rem 0;
 }
+
+.deleteBtn {
+  position: absolute;
+  right: 0;
+  bottom: 30%;
+}
+
+.deleteBtn:hover {
+  background-color: #80ed99;
+}
+
+.deleteBtn:active {
+  top: 37%;
+}

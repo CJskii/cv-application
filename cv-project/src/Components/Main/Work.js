@@ -15,6 +15,7 @@ class Work extends Component {
         id: uniqid(),
         showButton: false,
         showForm: false,
+        showDeleteButton: false,
       },
       jobs: [
         {
@@ -27,6 +28,7 @@ class Work extends Component {
           id: uniqid(),
           showButton: false,
           showForm: false,
+          showDeleteButton: false,
         },
         {
           title: "Senior manager",
@@ -38,6 +40,7 @@ class Work extends Component {
           id: uniqid(),
           showButton: false,
           showForm: false,
+          showDeleteButton: false,
         },
         {
           title: "Senior manager",
@@ -49,6 +52,7 @@ class Work extends Component {
           id: uniqid(),
           showButton: false,
           showForm: false,
+          showDeleteButton: false,
         },
       ],
       count: 3,
@@ -57,6 +61,9 @@ class Work extends Component {
     this.showButton = this.showButton.bind(this);
     this.hideButton = this.hideButton.bind(this);
     this.showForm = this.showForm.bind(this);
+    this.showDeleteButton = this.showDeleteButton.bind(this);
+    this.hideDeleteButton = this.hideDeleteButton.bind(this);
+    this.deleteJob = this.deleteJob.bind(this);
   }
 
   showButton(id) {
@@ -83,6 +90,41 @@ class Work extends Component {
         EDIT
       </button>
     );
+  }
+
+  showDeleteButton(id) {
+    console.log("delete show");
+    this.setState((prevState) => {
+      let jobs = this.state.jobs;
+      let work = jobs.find((work) => work.id === id);
+      work.showDeleteButton = true;
+      return { jobs };
+    });
+  }
+
+  hideDeleteButton(id) {
+    console.log("delete hide");
+    this.setState((prevState) => {
+      let jobs = this.state.jobs;
+      let work = jobs.find((work) => work.id === id);
+      work.showDeleteButton = false;
+      return { jobs };
+    });
+  }
+
+  deleteButton(id) {
+    return (
+      <button onClick={() => this.deleteJob(id)} className="deleteBtn btn">
+        DELETE
+      </button>
+    );
+  }
+
+  deleteJob(id) {
+    this.setState({
+      jobs: this.state.jobs.filter((task) => task.id !== id),
+      count: this.state.count - 1,
+    });
   }
 
   showForm(id) {
@@ -137,16 +179,6 @@ class Work extends Component {
     });
   }
 
-  showAddBtn() {}
-
-  hideAddBtn() {}
-
-  showRemoveBtn() {}
-
-  hideRemoveBtn() {}
-
-  handleAddJob() {}
-
   render() {
     return (
       <div className="work-container">
@@ -160,11 +192,19 @@ class Work extends Component {
               <div
                 className="work-content-wrapper"
                 key={work.id}
-                onMouseEnter={() => this.showButton(work.id)}
-                onMouseLeave={() => this.hideButton(work.id)}
+                onMouseEnter={() => {
+                  this.showButton(work.id);
+                  this.showDeleteButton(work.id);
+                }}
+                onMouseLeave={() => {
+                  this.hideButton(work.id);
+                  this.hideDeleteButton(work.id);
+                }}
               >
                 {this.state.jobs.find((job) => job.id === work.id).showButton &&
                   this.button(work.id)}
+                {this.state.jobs.find((job) => job.id === work.id)
+                  .showDeleteButton && this.deleteButton(work.id)}
                 {/* <div className="work-icons">
                   <i className="add-work add"></i>
                   <i className="remove-work remove"></i>
