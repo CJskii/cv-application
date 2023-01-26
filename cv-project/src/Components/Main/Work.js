@@ -8,7 +8,6 @@ class Work extends Component {
     this.state = {
       work: this.workTemplate(),
       jobs: [this.workTemplate(), this.workTemplate(), this.workTemplate()],
-      count: 3,
     };
 
     this.showButton = this.showButton.bind(this);
@@ -81,7 +80,13 @@ class Work extends Component {
 
   deleteButton(id) {
     return (
-      <button onClick={() => this.deleteJob(id)} className="deleteBtn btn">
+      <button
+        onClick={() => {
+          this.deleteJob(id);
+          this.props.workCountDown();
+        }}
+        className="deleteBtn btn"
+      >
         DELETE
       </button>
     );
@@ -90,13 +95,18 @@ class Work extends Component {
   deleteJob(id) {
     this.setState({
       jobs: this.state.jobs.filter((task) => task.id !== id),
-      count: this.state.count - 1,
     });
   }
 
   addButton() {
     return (
-      <button onClick={this.addJob} className="addBtn btn">
+      <button
+        onClick={() => {
+          this.addJob();
+          this.props.workCountUp();
+        }}
+        className="addBtn btn"
+      >
         ADD
       </button>
     );
@@ -106,7 +116,6 @@ class Work extends Component {
     this.setState({
       work: this.workTemplate(),
       jobs: this.state.jobs.concat(this.state.work),
-      count: this.state.count + 1,
     });
   }
 
@@ -204,7 +213,7 @@ class Work extends Component {
             );
           })}
         </div>
-        {this.state.count < 3 && this.addButton()}
+        {this.props.workCount < 3 && this.addButton()}
       </div>
     );
   }
