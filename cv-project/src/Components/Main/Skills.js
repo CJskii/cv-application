@@ -1,37 +1,47 @@
 import React, { Component } from "react";
+import uniqid from "uniqid";
 
 class Skills extends Component {
   constructor() {
     super();
 
     this.state = {
-      skill1: "Javascript",
-      skill2: "React",
-      skill3: "Git version control",
-      skill4: "NodeJS",
-      skill5: "NextJS",
-      skill6: "Solidity",
-      skill7: "Vue",
-      skill8: "Data structures and algorithms",
-      skill9: "Database and SQL",
-      skill10: "Cloud computing",
-      skill11: "Web development",
-      skill12: "Problem solving",
-      skill13: "Curiosity",
-      skill14: "Adaptability",
-      skill15: "Time management",
-      skill16: "Accountability",
-      skill17: "Teamwork and conflict resolution",
-      skill18: "Communication",
-      skill19: "Angular",
-      skill20: "ExpressJS",
-      skill21: "Django and Flask",
-      skill22: "Analytical skills",
+      skills: this.skillsTemplate(),
+      checkedSkills: [],
       showButton: false,
+      showForm: false,
+      skillCount: 0,
     };
 
     this.showButton = this.showButton.bind(this);
     this.hideButton = this.hideButton.bind(this);
+    this.showForm = this.showForm.bind(this);
+    this.formSubmit = this.handleFormSubmit.bind(this);
+    this.addSkill = this.handleCheckboxClick.bind(this);
+  }
+
+  skillsTemplate() {
+    return [
+      { id: uniqid(), isChecked: false, name: "Javascript" },
+      { id: uniqid(), isChecked: false, name: "React" },
+      { id: uniqid(), isChecked: false, name: "Git" },
+      { id: uniqid(), isChecked: false, name: "NodeJS" },
+      { id: uniqid(), isChecked: false, name: "NextJS" },
+      { id: uniqid(), isChecked: false, name: "Solidity" },
+      { id: uniqid(), isChecked: false, name: "Vue" },
+      { id: uniqid(), isChecked: false, name: "Angular" },
+      { id: uniqid(), isChecked: false, name: "ExpressJS" },
+      { id: uniqid(), isChecked: false, name: "Django and Flask" },
+      { id: uniqid(), isChecked: false, name: "MongoDB" },
+      { id: uniqid(), isChecked: false, name: "Web development" },
+      { id: uniqid(), isChecked: false, name: "Problem solving" },
+      { id: uniqid(), isChecked: false, name: "Curiosity" },
+      { id: uniqid(), isChecked: false, name: "Adaptability" },
+      { id: uniqid(), isChecked: false, name: "Time management" },
+      { id: uniqid(), isChecked: false, name: "Accountability" },
+      { id: uniqid(), isChecked: false, name: "Teamwork" },
+      { id: uniqid(), isChecked: false, name: "Communication" },
+    ];
   }
 
   showButton() {
@@ -47,7 +57,80 @@ class Skills extends Component {
   }
 
   button() {
-    return <button className="editBtn btn">EDIT</button>;
+    return (
+      <button onClick={this.showForm} className="editBtn btn">
+        EDIT
+      </button>
+    );
+  }
+
+  skillCountUp() {
+    this.setState({
+      skillCount: this.state.skillCount + 1,
+    });
+  }
+
+  skillCountDown() {
+    this.setState({
+      skillCount: this.state.skillCount - 1,
+    });
+  }
+
+  showForm() {
+    this.setState({
+      showForm: true,
+    });
+  }
+
+  skillsForm() {
+    return (
+      <form className="skill-form" autoComplete="off">
+        <div className="skill-form-wrap">
+          {this.state.skills.map((skill, index) => {
+            return (
+              <div key={skill.id} className="skill-choice-container">
+                <label>{skill.name}</label>
+                <input
+                  onClick={(e) => this.addSkill(e, skill)}
+                  type="checkbox"
+                />
+              </div>
+            );
+          })}
+        </div>
+        <button
+          type="submit"
+          className="submitBtn btn"
+          onClick={(e) => this.formSubmit(e)}
+        >
+          Submit
+        </button>
+      </form>
+    );
+  }
+
+  handleCheckboxClick(e, obj) {
+    let task = this.state.checkedSkills.find((skill) => skill === obj);
+    console.log(this.state.skillCount);
+    if (!task && this.state.skillCount < 6) {
+      this.setState({
+        checkedSkills: this.state.checkedSkills.concat(obj),
+      });
+      this.skillCountUp();
+    } else if (task && this.state.skillCount <= 6) {
+      this.setState({
+        checkedSkills: this.state.checkedSkills.filter((item) => item !== obj),
+      });
+      this.skillCountDown();
+    } else {
+      e.preventDefault();
+      return;
+    }
+  }
+
+  handleFormSubmit(e) {
+    e.preventDefault();
+    console.log(this.state.checkedSkills);
   }
 
   render() {
@@ -58,18 +141,21 @@ class Skills extends Component {
         onMouseLeave={this.hideButton}
       >
         {this.state.showButton && this.button()}
+        {this.state.showForm && this.skillsForm()}
         <div className="skills-wrapper">
           <div className="skills-header">
             SKILLS
             <div className="skills-divider"></div>
           </div>
           <div className="skills-content">
-            <span>Web development</span>
-            <span>Javascript</span>
-            <span>React</span>
-            <span>NodeJS</span>
-            <span>Git version control</span>
-            <span>Database</span>
+            {this.state.checkedSkills.length === 0
+              ? this.state.skills.map((skill, index) => {
+                  if (index < 6)
+                    return <span key={uniqid()}>{skill.name}</span>;
+                })
+              : this.state.checkedSkills.map((skill, index) => {
+                  return <span key={uniqid()}>{skill.name}</span>;
+                })}
           </div>
 
           {/* <div className="skills-text">{description.text}</div> */}

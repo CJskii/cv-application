@@ -10,14 +10,12 @@ class Main extends Component {
 
     this.state = {
       workCount: 3,
-      skillCount: 6,
     };
 
     this.workCountUp = this.workCountUp.bind(this);
     this.workCountDown = this.workCountDown.bind(this);
-    this.skillCountUp = this.skillCountUp.bind(this);
-    this.skillCountDown = this.skillCountDown.bind(this);
     this.workCount = this.state.workCount;
+    this.skillCount = this.state.skillCount;
   }
 
   workCountUp() {
@@ -29,18 +27,6 @@ class Main extends Component {
   workCountDown() {
     this.setState({
       workCount: this.state.workCount - 1,
-    });
-  }
-
-  skillCountUp() {
-    this.setState({
-      skillCount: this.state.skillCount + 1,
-    });
-  }
-
-  skillCountDown() {
-    this.setState({
-      skillCount: this.state.skillCount - 1,
     });
   }
 
@@ -57,6 +43,7 @@ class Main extends Component {
           skillCountUp={this.skillCountUp}
           skillCountDown={this.skillCountDown}
           workCount={this.state.workCount}
+          skillCount={this.skillCount}
         />
       </div>
     );
