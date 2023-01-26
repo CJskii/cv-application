@@ -11,6 +11,7 @@ class Skills extends Component {
       showButton: false,
       showForm: false,
       skillCount: 0,
+      skill: { name: "", id: uniqid() },
     };
 
     this.showButton = this.showButton.bind(this);
@@ -18,6 +19,8 @@ class Skills extends Component {
     this.showForm = this.showForm.bind(this);
     this.formSubmit = this.handleFormSubmit.bind(this);
     this.addSkill = this.handleCheckboxClick.bind(this);
+    this.handleCustomSkillChange = this.handleCustomSkillChange.bind(this);
+    this.handleCustomSkillAdd = this.handleCustomSkillAdd.bind(this);
   }
 
   skillsTemplate() {
@@ -85,6 +88,7 @@ class Skills extends Component {
   skillsForm() {
     return (
       <form className="skill-form" autoComplete="off">
+        <span>Skills - max 6</span>
         <div className="skill-form-wrap">
           {this.state.skills.map((skill, index) => {
             return (
@@ -98,6 +102,18 @@ class Skills extends Component {
             );
           })}
         </div>
+        <div className="custom-skill">
+          <label htmlFor="custom-text">Custom skill</label>
+          <input
+            id="custom-text"
+            type="text"
+            onChange={(e) => this.handleCustomSkillChange(e)}
+          />
+          <button onClick={(e) => this.handleCustomSkillAdd(e)} className="btn">
+            ADD
+          </button>
+        </div>
+
         <button
           type="submit"
           className="submitBtn btn"
@@ -128,9 +144,30 @@ class Skills extends Component {
     }
   }
 
+  handleCustomSkillChange(e) {
+    this.setState((prevState) => {
+      let skill = this.state.skill;
+      skill.name = e.target.value;
+      return { skill };
+    });
+  }
+
+  handleCustomSkillAdd(e) {
+    e.preventDefault();
+    if (this.state.skillCount < 6) {
+      this.setState({
+        checkedSkills: this.state.checkedSkills.concat(this.state.skill),
+        skill: { name: "", id: uniqid() },
+      });
+      return this.state.checkedSkills;
+    } else return;
+  }
+
   handleFormSubmit(e) {
     e.preventDefault();
-    console.log(this.state.checkedSkills);
+    this.setState({
+      showForm: false,
+    });
   }
 
   render() {
