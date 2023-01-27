@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 //import Draggable from "react-draggable";
+import Icons from "../Icons";
 
 class Links extends Component {
   constructor(props) {
@@ -96,25 +97,41 @@ class Links extends Component {
           <div className="card-divider"></div>
           {links.github !== "" ? (
             <div className="link-wrapper">
-              <i className="github-link-icon"></i>
+              <img
+                className="github-link-icon"
+                src={Icons.github}
+                alt="github"
+              />
               <div className="github-link">{links.github}</div>
             </div>
           ) : null}
           {links.linkedin !== "" ? (
             <div className="link-wrapper">
-              <i className="linkedin-link-icon"></i>
+              <img
+                className="linkedin-link-icon"
+                src={Icons.linkedin}
+                alt="linkedin"
+              />
               <div className="linkedin">{links.linkedin}</div>
             </div>
           ) : null}
           {links.twitter !== "" ? (
             <div className="link-wrapper">
-              <i className="twitter-link-icon"></i>
+              <img
+                className="twitter-link-icon"
+                src={Icons.twitter}
+                alt="twitter"
+              />
               <div className="twitter">{links.twitter}</div>
             </div>
           ) : null}
           {links.twitter !== "" ? (
             <div className="link-wrapper">
-              <i className="portfolio-link-icon"></i>
+              <img
+                className="portfolio-link-icon"
+                src={Icons.portfolio}
+                alt="portfolio"
+              />
               <div className="portfolio">{links.portfolio}</div>
             </div>
           ) : null}

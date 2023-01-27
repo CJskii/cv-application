@@ -79,17 +79,6 @@
   position: relative;
   font-family: Monsterrat;
 }
-.maps-icon {
-  content: url(../Img/maps.svg);
-}
-
-.phone-icon {
-  content: url(../Img/telephone.svg);
-}
-
-.email-icon {
-  content: url(../Img/mail.svg);
-}
 
 .maps-icon,
 .phone-icon,

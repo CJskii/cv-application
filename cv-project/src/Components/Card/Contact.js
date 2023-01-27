@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 //import Draggable from "react-draggable";
+import Icons from "../Icons";
 
 class Contact extends Component {
   constructor(props) {
@@ -90,15 +91,15 @@ class Contact extends Component {
         <div className="contact-wrapper">
           <div className="card-divider"></div>
           <div className="country">
-            <i className="maps-icon"></i>
+            <img className="maps-icon" src={Icons.maps} alt="map" />
             {contact.country}
           </div>
           <div className="telephone">
-            <i className="phone-icon"></i>
+            <img className="phone-icon" src={Icons.tel} alt="tel" />
             {contact.telephone}
           </div>
           <div className="email">
-            <i className="email-icon"></i>
+            <img className="email-icon" src={Icons.mail} alt="mail" />
             {contact.email}
           </div>
 
