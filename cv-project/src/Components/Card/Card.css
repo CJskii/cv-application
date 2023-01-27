@@ -1,11 +1,24 @@
 .profile-picture {
-  width: 125px;
-  height: 125px;
+  width: 150px;
+  height: 150px;
   background-color: blue;
   border-radius: 100px;
   border: 2px solid white;
   display: flex;
   justify-content: center;
+}
+
+.pfp-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pfp-container > input {
+  position: absolute;
+  width: fit-content;
+  left: 0;
 }
 
 .card-wrapper {

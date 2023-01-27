@@ -3,6 +3,7 @@ import "./Card.css";
 import Contact from "./Contact";
 import Education from "./Education";
 import Links from "./Links";
+import ProfilePicture from "./ProfilePicture";
 
 class Card extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class Card extends Component {
     const { links } = this.state;
     return (
       <div className="card-wrapper">
-        <img className="profile-picture" alt="pfp"></img>
+        {/* <img className="profile-picture" alt="pfp"></img> */}
+        <ProfilePicture />
         <Contact />
         <Education />
         <Links links={links} />
