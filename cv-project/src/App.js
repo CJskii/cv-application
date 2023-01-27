@@ -4,9 +4,21 @@ import Footer from "./Components/Footer/Footer";
 import General from "./Components/General/General";
 import Card from "./Components/Card/Card";
 import Main from "./Components/Main/Main";
+import jsPDF from "jspdf";
 import React, { Component } from "react";
 
 class App extends Component {
+  generatePDF() {
+    let doc = new jsPDF("p", "pt", "a4");
+    doc.html(document.querySelector(".cv-container"), {
+      callback: function (pdf) {
+        let pageCount = doc.internal.getNumberOfPages();
+        pdf.deletePage(pageCount);
+        pdf.save("myCV.pdf");
+      },
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,6 +39,13 @@ class App extends Component {
             </div>
           </div>
         </div>
+        <button
+          className="btn pdfbutton"
+          onClick={this.generatePDF}
+          type="primary"
+        >
+          Generate PDF
+        </button>
         {/* Navbar
         General - name, email, github, twitter
         Education - school, title of study, date of study
