@@ -29,4 +29,6 @@ a:hover {
   content: url(../Img/github.svg);
   width: 25px;
   height: 25px;
+  filter: invert(50%) sepia(25%) saturate(28%) hue-rotate(346deg)
+    brightness(90%) contrast(97%);
 }

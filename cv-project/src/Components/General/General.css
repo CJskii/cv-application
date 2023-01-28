@@ -28,8 +28,22 @@
 }
 
 input {
-  outline: none;
   background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: 1px solid white;
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  border-bottom: 1px solid #ffa700;
+}
+
+input[type="file"] {
+  border: none;
+}
+
+input::placeholder {
   text-align: center;
 }
 
@@ -52,11 +66,18 @@ input {
   border: none;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  background: #57cc99;
+  background-color: #ffa700;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #ff8c00;
+  cursor: pointer;
 }
 
 .editBtn:hover {
-  background-color: #80ed99;
+  background-color: #ff8c00;
+  cursor: pointer;
 }
 .editBtn:active {
   top: 2px;
@@ -74,7 +95,13 @@ input {
   border: none;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  background: #57cc99;
+  background-color: #ffa700;
+  transition: all 0.3s ease-in-out;
+}
+
+.submitBtn:hover {
+  background-color: #ff8c00;
+  cursor: pointer;
 }
 
 .name-form {
@@ -87,8 +114,14 @@ input {
   align-items: center;
   right: 0;
   padding: 0.5rem;
-  background-color: #57cc99;
   border-radius: 5px;
   margin-top: 5px;
   margin-right: 5px;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.18),
+    0px 17px 50px rgba(0, 0, 0, 0.12), 10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.name-form:hover {
+  background: radial-gradient(circle at center, #2e2e2e 0%, #000 100%);
 }

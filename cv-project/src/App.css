@@ -86,3 +86,25 @@
 .pdfbutton {
   margin-bottom: 15px;
 }
+
+@media (max-width: 555px) {
+  .App {
+    display: none;
+  }
+  html {
+    background-color: black;
+  }
+  html::before {
+    content: "No support for mobile devices, sorry :)";
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0.2rem;
+    text-align: center;
+  }
+}

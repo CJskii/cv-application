@@ -156,13 +156,21 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  background-color: #57cc99;
   border-radius: 5px;
   margin-top: 5px;
   margin-right: 5px;
   z-index: 1;
   bottom: 0;
   right: 0;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.18),
+    0px 17px 50px rgba(0, 0, 0, 0.12), 10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-form:hover,
+.work-form:hover,
+.skill-form:hover {
+  background: radial-gradient(circle at center, #2e2e2e 0%, #000 100%);
 }
 
 .skill-form {
@@ -174,9 +182,10 @@
 textarea {
   height: 300px;
   width: 300px;
-  color: black;
+  color: white;
   margin: 0.5rem;
   resize: none;
+  background-color: transparent;
 }
 
 #descwork {
@@ -208,7 +217,7 @@ textarea::placeholder {
 }
 
 .deleteBtn:hover {
-  background-color: #80ed99;
+  background-color: #ff4800;
 }
 
 .deleteBtn:active {
@@ -219,4 +228,8 @@ textarea::placeholder {
   position: absolute;
   top: 0;
   right: 6%;
+}
+
+.addBtn:hover {
+  background-color: #08c972;
 }

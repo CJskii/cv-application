@@ -8,7 +8,7 @@ class General extends Component {
   constructor() {
     super();
     this.state = {
-      user: { name: "MICHAEL JORDAN", title: "CREATIVE DIRECTOR" },
+      user: { name: "SATOSHI NAKAMOTO", title: "BITCOIN CREATOR" },
       showEditBtn: false,
       showForm: false,
     };
