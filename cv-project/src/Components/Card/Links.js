@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import Draggable from "react-draggable";
+import Draggable from "react-draggable";
 import Icons from "../Icons";
 
 class Links extends Component {
@@ -56,54 +56,54 @@ class Links extends Component {
 
   editForm() {
     return (
-      //<Draggable>
-      <form
-        className="links-form"
-        autoComplete="off"
-        onSubmit={(e) => this.handleFormSubmit(e)}
-      >
-        <label htmlFor="github">Github</label>
-        <input
-          placeholder="github.com/yourhandle"
-          id="github"
-          className="github-input"
-          type="text"
-        />
-        <label htmlFor="linkedin">LinkedIn</label>
-        <input
-          placeholder="linkedin.com/yourhandle"
-          id="linkedin"
-          className="linkedin-input"
-          type="text"
-        />
-        <label htmlFor="twitter">Twitter</label>
-        <input
-          placeholder="twitter.com/yourhandle"
-          id="twitter"
-          className="twitter-input"
-          type="text"
-        />
-        <label htmlFor="portfolio">Portfolio</label>
-        <input
-          placeholder="portfolio.xyz"
-          id="portfolio"
-          className="portfolio-input"
-          type="text"
-        />
-        <div className="btn-wrapper">
-          <button type="submit" className="submitBtn btn">
-            Submit
-          </button>
-          <button
-            type="button"
-            onClick={(e) => this.setState({ showForm: false })}
-            className="closeBtn btn"
-          >
-            Close
-          </button>
-        </div>
-      </form>
-      // </Draggable>
+      <Draggable>
+        <form
+          className="links-form"
+          autoComplete="off"
+          onSubmit={(e) => this.handleFormSubmit(e)}
+        >
+          <label htmlFor="github">Github</label>
+          <input
+            placeholder="github.com/yourhandle"
+            id="github"
+            className="github-input"
+            type="text"
+          />
+          <label htmlFor="linkedin">LinkedIn</label>
+          <input
+            placeholder="linkedin.com/yourhandle"
+            id="linkedin"
+            className="linkedin-input"
+            type="text"
+          />
+          <label htmlFor="twitter">Twitter</label>
+          <input
+            placeholder="twitter.com/yourhandle"
+            id="twitter"
+            className="twitter-input"
+            type="text"
+          />
+          <label htmlFor="portfolio">Portfolio</label>
+          <input
+            placeholder="portfolio.xyz"
+            id="portfolio"
+            className="portfolio-input"
+            type="text"
+          />
+          <div className="btn-wrapper">
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={(e) => this.setState({ showForm: false })}
+              className="closeBtn btn"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </Draggable>
     );
   }
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
+import Draggable from "react-draggable";
 
 class Skills extends Component {
   constructor() {
@@ -87,50 +88,55 @@ class Skills extends Component {
 
   skillsForm() {
     return (
-      <form className="skill-form" autoComplete="off">
-        <span>Skills - max 6</span>
-        <div className="skill-form-wrap">
-          {this.state.skills.map((skill, index) => {
-            return (
-              <div key={skill.id} className="skill-choice-container">
-                <label>{skill.name}</label>
-                <input
-                  onClick={(e) => this.addSkill(e, skill)}
-                  type="checkbox"
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div className="custom-skill">
-          <label htmlFor="custom-text">Custom skill</label>
-          <input
-            placeholder="Enter skill name..."
-            id="custom-text"
-            type="text"
-            onChange={(e) => this.handleCustomSkillChange(e)}
-          />
-          <button onClick={(e) => this.handleCustomSkillAdd(e)} className="btn">
-            ADD
-          </button>
-        </div>
-        <div className="btn-wrapper">
-          <button
-            type="submit"
-            className="submitBtn btn"
-            onClick={(e) => this.formSubmit(e)}
-          >
-            Submit
-          </button>
-          <button
-            type="button"
-            onClick={(e) => this.setState({ showForm: false })}
-            className="closeBtn btn"
-          >
-            Close
-          </button>
-        </div>
-      </form>
+      <Draggable>
+        <form className="skill-form" autoComplete="off">
+          <span>Skills - max 6</span>
+          <div className="skill-form-wrap">
+            {this.state.skills.map((skill, index) => {
+              return (
+                <div key={skill.id} className="skill-choice-container">
+                  <label>{skill.name}</label>
+                  <input
+                    onClick={(e) => this.addSkill(e, skill)}
+                    type="checkbox"
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className="custom-skill">
+            <label htmlFor="custom-text">Custom skill</label>
+            <input
+              placeholder="Enter skill name..."
+              id="custom-text"
+              type="text"
+              onChange={(e) => this.handleCustomSkillChange(e)}
+            />
+            <button
+              onClick={(e) => this.handleCustomSkillAdd(e)}
+              className="btn"
+            >
+              ADD
+            </button>
+          </div>
+          <div className="btn-wrapper">
+            <button
+              type="submit"
+              className="submitBtn btn"
+              onClick={(e) => this.formSubmit(e)}
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={(e) => this.setState({ showForm: false })}
+              className="closeBtn btn"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </Draggable>
     );
   }
 

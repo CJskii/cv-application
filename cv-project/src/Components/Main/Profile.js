@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Draggable from "react-draggable";
 
 class Profile extends Component {
   constructor() {
@@ -55,31 +56,33 @@ class Profile extends Component {
 
   editForm() {
     return (
-      <form
-        className="profile-form"
-        autoComplete="off"
-        onSubmit={(e) => this.submitForm(e)}
-      >
-        <label htmlFor="text-area">Your profile description</label>
-        <textarea
-          placeholder="Type short introduction about yourself..."
-          id="text-area"
-          type="text"
-          required
-        />
-        <div className="btn-wrapper">
-          <button type="submit" className="submitBtn btn">
-            Submit
-          </button>
-          <button
-            type="button"
-            onClick={(e) => this.setState({ showForm: false })}
-            className="closeBtn btn"
-          >
-            Close
-          </button>
-        </div>
-      </form>
+      <Draggable>
+        <form
+          className="profile-form"
+          autoComplete="off"
+          onSubmit={(e) => this.submitForm(e)}
+        >
+          <label htmlFor="text-area">Your profile description</label>
+          <textarea
+            placeholder="Type short introduction about yourself..."
+            id="text-area"
+            type="text"
+            required
+          />
+          <div className="btn-wrapper">
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={(e) => this.setState({ showForm: false })}
+              className="closeBtn btn"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </Draggable>
     );
   }
 

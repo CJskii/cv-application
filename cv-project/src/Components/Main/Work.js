@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
+import Draggable from "react-draggable";
 
 class Work extends Component {
   constructor() {
@@ -140,54 +141,61 @@ class Work extends Component {
 
   form(id) {
     return (
-      <form
-        className="work-form"
-        autoComplete="off"
-        onSubmit={(e) => this.handleEditJob(e, id)}
-      >
-        <label htmlFor="title">Title</label>
-        <input id="title" type="text" placeholder="Enter job title" required />
-        <label htmlFor="company">Company</label>
-        <input
-          id="company"
-          type="text"
-          placeholder="Enter company name"
-          required
-        />
-        <label htmlFor="location">Location</label>
-        <input
-          id="location"
-          type="text"
-          placeholder="Enter location name"
-          required
-        />
-        <label htmlFor="dates">Dates</label>
-        <input
-          id="dates"
-          type="text"
-          placeholder="JAN 2019 - DEC 2022"
-          required
-        />
-        <label htmlFor="descwork">Description</label>
-        <textarea
-          id="descwork"
-          type="text"
-          placeholder="Enter short description of your duties..."
-          required
-        />
-        <div className="btn-wrapper">
-          <button type="submit" className="submitBtn btn">
-            Submit
-          </button>
-          <button
-            type="button"
-            onClick={(e) => this.closeForm(e, id)}
-            className="closeBtn btn"
-          >
-            Close
-          </button>
-        </div>
-      </form>
+      <Draggable>
+        <form
+          className="work-form"
+          autoComplete="off"
+          onSubmit={(e) => this.handleEditJob(e, id)}
+        >
+          <label htmlFor="title">Title</label>
+          <input
+            id="title"
+            type="text"
+            placeholder="Enter job title"
+            required
+          />
+          <label htmlFor="company">Company</label>
+          <input
+            id="company"
+            type="text"
+            placeholder="Enter company name"
+            required
+          />
+          <label htmlFor="location">Location</label>
+          <input
+            id="location"
+            type="text"
+            placeholder="Enter location name"
+            required
+          />
+          <label htmlFor="dates">Dates</label>
+          <input
+            id="dates"
+            type="text"
+            placeholder="JAN 2019 - DEC 2022"
+            required
+          />
+          <label htmlFor="descwork">Description</label>
+          <textarea
+            id="descwork"
+            type="text"
+            placeholder="Enter short description of your duties..."
+            required
+          />
+          <div className="btn-wrapper">
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={(e) => this.closeForm(e, id)}
+              className="closeBtn btn"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </Draggable>
     );
   }
 

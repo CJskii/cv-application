@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import Draggable from "react-draggable";
+import Draggable from "react-draggable";
 
 class Education extends Component {
   constructor(props) {
@@ -54,117 +54,117 @@ class Education extends Component {
     let count = this.state.count;
     if (count === 1) {
       return (
-        // <Draggable>
-        <form
-          className="education-form"
-          autoComplete="off"
-          onSubmit={(e) => this.handleFormSubmit(e)}
-        >
-          <i className="add" onClick={this.addEducation}></i>
-          <label htmlFor="title">Degree</label>
-          <input
-            placeholder="Master in Javascript"
-            id="title"
-            className="title-form t1"
-            type="text"
-            required
-          />
-          <label htmlFor="dates">Dates</label>
-          <input
-            placeholder="JAN 2019 - DEC 2022"
-            id="dates"
-            className="dates-form d1"
-            type="text"
-            required
-          />
-          <label htmlFor="uni">University/School</label>
-          <input
-            placeholder="Oxford University - UK"
-            id="uni"
-            className="uni-form u1"
-            type="text"
-            required
-          />
-          <div className="btn-wrapper">
-            <button type="submit" className="submitBtn btn">
-              Submit
-            </button>
-            <button
-              type="button"
-              onClick={(e) => this.setState({ showForm: false })}
-              className="closeBtn btn"
-            >
-              Close
-            </button>
-          </div>
-        </form>
-        // </Draggable>
+        <Draggable>
+          <form
+            className="education-form"
+            autoComplete="off"
+            onSubmit={(e) => this.handleFormSubmit(e)}
+          >
+            <i className="add" onClick={this.addEducation}></i>
+            <label htmlFor="title">Degree</label>
+            <input
+              placeholder="Master in Javascript"
+              id="title"
+              className="title-form t1"
+              type="text"
+              required
+            />
+            <label htmlFor="dates">Dates</label>
+            <input
+              placeholder="JAN 2019 - DEC 2022"
+              id="dates"
+              className="dates-form d1"
+              type="text"
+              required
+            />
+            <label htmlFor="uni">University/School</label>
+            <input
+              placeholder="Oxford University - UK"
+              id="uni"
+              className="uni-form u1"
+              type="text"
+              required
+            />
+            <div className="btn-wrapper">
+              <button type="submit" className="submitBtn btn">
+                Submit
+              </button>
+              <button
+                type="button"
+                onClick={(e) => this.setState({ showForm: false })}
+                className="closeBtn btn"
+              >
+                Close
+              </button>
+            </div>
+          </form>
+        </Draggable>
       );
     } else {
       return (
-        // <Draggable>
-        <form
-          className="education-form"
-          autoComplete="off"
-          onSubmit={(e) => this.handleFormSubmit(e)}
-        >
-          <i className="remove" onClick={this.removeEducation}></i>
-          <label htmlFor="title1">Degree 1</label>
-          <input
-            placeholder="Master in Javascript"
-            id="title1"
-            className="title-form t1"
-            type="text"
-          />
-          <label htmlFor="dates1">Dates 1</label>
-          <input
-            placeholder="JAN 2019 - DEC 2022"
-            id="dates1"
-            className="dates-form d1"
-            type="text"
-          />
-          <label htmlFor="uni1">University/School 1</label>
-          <input
-            placeholder="Oxford University - UK"
-            id="uni1"
-            className="uni-form u1"
-            type="text"
-          />
-          <label htmlFor="title2">Degree 2</label>
-          <input
-            placeholder="Master in CS"
-            id="title2"
-            className="title-form t2"
-            type="text"
-          />
-          <label htmlFor="dates2">Dates 2</label>
-          <input
-            placeholder="JAN 2019 - DEC 2022"
-            id="dates2"
-            className="dates-form d2"
-            type="text"
-          />
-          <label htmlFor="uni2">University/School 2</label>
-          <input
-            placeholder="London University - UK"
-            id="uni2"
-            className="uni-form u2"
-            type="text"
-          />
-          <div className="btn-wrapper">
-            <button type="submit" className="submitBtn btn">
-              Submit
-            </button>
-            <button
-              type="button"
-              onClick={(e) => this.setState({ showForm: false })}
-              className="closeBtn btn"
-            >
-              Close
-            </button>
-          </div>
-        </form>
-        // </Draggable>
+        <Draggable>
+          <form
+            className="education-form"
+            autoComplete="off"
+            onSubmit={(e) => this.handleFormSubmit(e)}
+          >
+            <i className="remove" onClick={this.removeEducation}></i>
+            <label htmlFor="title1">Degree 1</label>
+            <input
+              placeholder="Master in Javascript"
+              id="title1"
+              className="title-form t1"
+              type="text"
+            />
+            <label htmlFor="dates1">Dates 1</label>
+            <input
+              placeholder="JAN 2019 - DEC 2022"
+              id="dates1"
+              className="dates-form d1"
+              type="text"
+            />
+            <label htmlFor="uni1">University/School 1</label>
+            <input
+              placeholder="Oxford University - UK"
+              id="uni1"
+              className="uni-form u1"
+              type="text"
+            />
+            <label htmlFor="title2">Degree 2</label>
+            <input
+              placeholder="Master in CS"
+              id="title2"
+              className="title-form t2"
+              type="text"
+            />
+            <label htmlFor="dates2">Dates 2</label>
+            <input
+              placeholder="JAN 2019 - DEC 2022"
+              id="dates2"
+              className="dates-form d2"
+              type="text"
+            />
+            <label htmlFor="uni2">University/School 2</label>
+            <input
+              placeholder="London University - UK"
+              id="uni2"
+              className="uni-form u2"
+              type="text"
+            />
+            <div className="btn-wrapper">
+              <button type="submit" className="submitBtn btn">
+                Submit
+              </button>
+              <button
+                type="button"
+                onClick={(e) => this.setState({ showForm: false })}
+                className="closeBtn btn"
+              >
+                Close
+              </button>
+            </div>
+          </form>
+        </Draggable>
       );
     }
   }

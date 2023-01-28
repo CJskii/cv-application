@@ -3,6 +3,7 @@ import Name from "./Name";
 import Underline from "./Underline";
 import Title from "./Title";
 import "./General.css";
+import Draggable from "react-draggable";
 
 class General extends Component {
   constructor() {
@@ -46,40 +47,42 @@ class General extends Component {
 
   editForm() {
     return (
-      <form
-        className="name-form"
-        autoComplete="off"
-        onSubmit={(e) => this.submitForm(e)}
-      >
-        <label htmlFor="name">Enter your name</label>
-        <input
-          placeholder="Satoshi Nakamoto"
-          id="name"
-          className="name-input"
-          type="text"
-          required
-        />
-        <label htmlFor="title">Enter your title</label>
-        <input
-          placeholder="Bitcoin Creator"
-          id="title"
-          className="title-input"
-          type="text"
-          required
-        />
-        <div className="btn-wrapper">
-          <button type="submit" className="submitBtn btn">
-            Submit
-          </button>
-          <button
-            type="button"
-            onClick={(e) => this.setState({ showForm: false })}
-            className="closeBtn btn"
-          >
-            Close
-          </button>
-        </div>
-      </form>
+      <Draggable>
+        <form
+          className="name-form"
+          autoComplete="off"
+          onSubmit={(e) => this.submitForm(e)}
+        >
+          <label htmlFor="name">Enter your name</label>
+          <input
+            placeholder="Satoshi Nakamoto"
+            id="name"
+            className="name-input"
+            type="text"
+            required
+          />
+          <label htmlFor="title">Enter your title</label>
+          <input
+            placeholder="Bitcoin Creator"
+            id="title"
+            className="title-input"
+            type="text"
+            required
+          />
+          <div className="btn-wrapper">
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={(e) => this.setState({ showForm: false })}
+              className="closeBtn btn"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </Draggable>
     );
   }
 

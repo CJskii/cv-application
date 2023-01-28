@@ -120,6 +120,7 @@ input::placeholder {
   background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
   box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.18),
     0px 17px 50px rgba(0, 0, 0, 0.12), 10px 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .name-form:hover {

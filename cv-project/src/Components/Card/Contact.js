@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import Draggable from "react-draggable";
+import Draggable from "react-draggable";
 import Icons from "../Icons";
 
 class Contact extends Component {
@@ -38,50 +38,50 @@ class Contact extends Component {
 
   editForm() {
     return (
-      //<Draggable>
-      <form
-        className="contact-form"
-        autoComplete="off"
-        onSubmit={(e) => this.handleFormSubmit(e)}
-      >
-        <label htmlFor="country">City and country</label>
-        <input
-          placeholder="London, United Kingdom"
-          id="country"
-          className="country-form"
-          type="text"
-          required
-        />
-        <label htmlFor="phone">Phone number</label>
-        <input
-          placeholder="+44 123 456 789"
-          id="phone"
-          className="number-form"
-          type="tel"
-          required
-        />
-        <label htmlFor="email">Email address</label>
-        <input
-          placeholder="youremail@address.com"
-          id="email"
-          className="email-form"
-          type="email"
-          required
-        />
-        <div className="btn-wrapper">
-          <button type="submit" className="submitBtn btn">
-            Submit
-          </button>
-          <button
-            type="button"
-            onClick={(e) => this.setState({ showForm: false })}
-            className="closeBtn btn"
-          >
-            Close
-          </button>
-        </div>
-      </form>
-      //</Draggable>
+      <Draggable>
+        <form
+          className="contact-form"
+          autoComplete="off"
+          onSubmit={(e) => this.handleFormSubmit(e)}
+        >
+          <label htmlFor="country">City and country</label>
+          <input
+            placeholder="London, United Kingdom"
+            id="country"
+            className="country-form"
+            type="text"
+            required
+          />
+          <label htmlFor="phone">Phone number</label>
+          <input
+            placeholder="+44 123 456 789"
+            id="phone"
+            className="number-form"
+            type="tel"
+            required
+          />
+          <label htmlFor="email">Email address</label>
+          <input
+            placeholder="youremail@address.com"
+            id="email"
+            className="email-form"
+            type="email"
+            required
+          />
+          <div className="btn-wrapper">
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={(e) => this.setState({ showForm: false })}
+              className="closeBtn btn"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </Draggable>
     );
   }
 
