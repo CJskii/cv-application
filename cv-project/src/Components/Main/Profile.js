@@ -61,10 +61,24 @@ class Profile extends Component {
         onSubmit={(e) => this.submitForm(e)}
       >
         <label htmlFor="text-area">Your profile description</label>
-        <textarea id="text-area" type="text" />
-        <button type="submit" className="submitBtn btn">
-          Submit
-        </button>
+        <textarea
+          placeholder="Type short introduction about yourself..."
+          id="text-area"
+          type="text"
+          required
+        />
+        <div className="btn-wrapper">
+          <button type="submit" className="submitBtn btn">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={(e) => this.setState({ showForm: false })}
+            className="closeBtn btn"
+          >
+            Close
+          </button>
+        </div>
       </form>
     );
   }

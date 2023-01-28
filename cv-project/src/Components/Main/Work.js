@@ -17,6 +17,7 @@ class Work extends Component {
     this.hideDeleteButton = this.hideDeleteButton.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
     this.addJob = this.handleAddingTaks.bind(this);
+    this.closeForm = this.closeForm.bind(this);
   }
 
   workTemplate() {
@@ -128,6 +129,15 @@ class Work extends Component {
     });
   }
 
+  closeForm(e, id) {
+    this.setState((prevState) => {
+      let jobs = this.state.jobs;
+      let job = jobs.find((job) => job.id === id);
+      job.showForm = false;
+      return { jobs };
+    });
+  }
+
   form(id) {
     return (
       <form
@@ -136,22 +146,47 @@ class Work extends Component {
         onSubmit={(e) => this.handleEditJob(e, id)}
       >
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" placeholder="Enter job title" />
+        <input id="title" type="text" placeholder="Enter job title" required />
         <label htmlFor="company">Company</label>
-        <input id="company" type="text" placeholder="Enter company name" />
+        <input
+          id="company"
+          type="text"
+          placeholder="Enter company name"
+          required
+        />
         <label htmlFor="location">Location</label>
-        <input id="location" type="text" placeholder="Enter location name" />
+        <input
+          id="location"
+          type="text"
+          placeholder="Enter location name"
+          required
+        />
         <label htmlFor="dates">Dates</label>
-        <input id="dates" type="text" placeholder="JAN 2019 - DEC 2022" />
+        <input
+          id="dates"
+          type="text"
+          placeholder="JAN 2019 - DEC 2022"
+          required
+        />
         <label htmlFor="descwork">Description</label>
         <textarea
           id="descwork"
           type="text"
           placeholder="Enter short description of your duties..."
+          required
         />
-        <button type="submit" className="submitBtn btn">
-          Submit
-        </button>
+        <div className="btn-wrapper">
+          <button type="submit" className="submitBtn btn">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={(e) => this.closeForm(e, id)}
+            className="closeBtn btn"
+          >
+            Close
+          </button>
+        </div>
       </form>
     );
   }

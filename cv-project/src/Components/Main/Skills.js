@@ -105,6 +105,7 @@ class Skills extends Component {
         <div className="custom-skill">
           <label htmlFor="custom-text">Custom skill</label>
           <input
+            placeholder="Enter skill name..."
             id="custom-text"
             type="text"
             onChange={(e) => this.handleCustomSkillChange(e)}
@@ -113,14 +114,22 @@ class Skills extends Component {
             ADD
           </button>
         </div>
-
-        <button
-          type="submit"
-          className="submitBtn btn"
-          onClick={(e) => this.formSubmit(e)}
-        >
-          Submit
-        </button>
+        <div className="btn-wrapper">
+          <button
+            type="submit"
+            className="submitBtn btn"
+            onClick={(e) => this.formSubmit(e)}
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={(e) => this.setState({ showForm: false })}
+            className="closeBtn btn"
+          >
+            Close
+          </button>
+        </div>
       </form>
     );
   }

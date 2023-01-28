@@ -126,6 +126,7 @@
   margin-right: 5px;
   z-index: 1;
   bottom: 0;
+  font-family: SofiaSerif;
 }
 
 .contact-form:hover,
@@ -138,16 +139,22 @@
   height: fit-content;
 }
 
-.contact-form > label {
+.contact-form > label,
+.education-form > label {
   font-size: 0.6rem;
+  padding: 0.1rem 0;
 }
 
 .add {
   content: url(../Img/add.svg);
+  filter: invert(50%) sepia(25%) saturate(28%) hue-rotate(346deg)
+    brightness(90%) contrast(97%);
 }
 
 .remove {
   content: url(../Img/remove.svg);
+  filter: invert(50%) sepia(25%) saturate(28%) hue-rotate(346deg)
+    brightness(90%) contrast(97%);
 }
 
 .link-wrapper {

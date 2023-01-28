@@ -125,3 +125,7 @@ input::placeholder {
 .name-form:hover {
   background: radial-gradient(circle at center, #2e2e2e 0%, #000 100%);
 }
+
+.name-form > label {
+  font-size: 0.8rem;
+}

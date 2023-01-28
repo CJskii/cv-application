@@ -52,12 +52,33 @@ class General extends Component {
         onSubmit={(e) => this.submitForm(e)}
       >
         <label htmlFor="name">Enter your name</label>
-        <input id="name" className="name-input" type="text" />
+        <input
+          placeholder="Satoshi Nakamoto"
+          id="name"
+          className="name-input"
+          type="text"
+          required
+        />
         <label htmlFor="title">Enter your title</label>
-        <input id="title" className="title-input" type="text" />
-        <button type="submit" className="submitBtn btn">
-          Submit
-        </button>
+        <input
+          placeholder="Bitcoin Creator"
+          id="title"
+          className="title-input"
+          type="text"
+          required
+        />
+        <div className="btn-wrapper">
+          <button type="submit" className="submitBtn btn">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={(e) => this.setState({ showForm: false })}
+            className="closeBtn btn"
+          >
+            Close
+          </button>
+        </div>
       </form>
     );
   }

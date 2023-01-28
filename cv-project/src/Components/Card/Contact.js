@@ -45,14 +45,41 @@ class Contact extends Component {
         onSubmit={(e) => this.handleFormSubmit(e)}
       >
         <label htmlFor="country">City and country</label>
-        <input id="country" className="country-form" type="text" />
+        <input
+          placeholder="London, United Kingdom"
+          id="country"
+          className="country-form"
+          type="text"
+          required
+        />
         <label htmlFor="phone">Phone number</label>
-        <input id="phone" className="number-form" type="tel" />
+        <input
+          placeholder="+44 123 456 789"
+          id="phone"
+          className="number-form"
+          type="tel"
+          required
+        />
         <label htmlFor="email">Email address</label>
-        <input id="email" className="email-form" type="email" />
-        <button type="submit" className="submitBtn btn">
-          Submit
-        </button>
+        <input
+          placeholder="youremail@address.com"
+          id="email"
+          className="email-form"
+          type="email"
+          required
+        />
+        <div className="btn-wrapper">
+          <button type="submit" className="submitBtn btn">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={(e) => this.setState({ showForm: false })}
+            className="closeBtn btn"
+          >
+            Close
+          </button>
+        </div>
       </form>
       //</Draggable>
     );
