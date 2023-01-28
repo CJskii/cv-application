@@ -102,7 +102,7 @@ class Links extends Component {
                 src={Icons.github}
                 alt="github"
               />
-              <div className="github-link">{links.github}</div>
+              <div className="github-link"> {links.github}</div>
             </div>
           ) : null}
           {links.linkedin !== "" ? (
@@ -112,7 +112,7 @@ class Links extends Component {
                 src={Icons.linkedin}
                 alt="linkedin"
               />
-              <div className="linkedin">{links.linkedin}</div>
+              <div className="linkedin"> {links.linkedin}</div>
             </div>
           ) : null}
           {links.twitter !== "" ? (
@@ -122,7 +122,7 @@ class Links extends Component {
                 src={Icons.twitter}
                 alt="twitter"
               />
-              <div className="twitter">{links.twitter}</div>
+              <div className="twitter"> {links.twitter}</div>
             </div>
           ) : null}
           {links.twitter !== "" ? (
@@ -132,7 +132,7 @@ class Links extends Component {
                 src={Icons.portfolio}
                 alt="portfolio"
               />
-              <div className="portfolio">{links.portfolio}</div>
+              <div className="portfolio"> {links.portfolio}</div>
             </div>
           ) : null}
 

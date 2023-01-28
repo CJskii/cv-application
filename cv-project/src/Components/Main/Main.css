@@ -116,9 +116,10 @@
   padding-left: 0.1rem;
   color: black;
   font-size: 0.6rem;
-  font-weight: 600;
+  font-weight: 500;
   justify-self: flex-start;
   align-items: center;
+  font-family: SofiaSans;
 }
 
 .skill-choice-container {
