@@ -63,7 +63,7 @@ class App extends Component {
               </span>
 
               <h4 className="happy">Happy building!</h4>
-              <button className="btn jump-button" onClick={this.start}>
+              <button className="btn start-btn" onClick={this.start}>
                 Start
               </button>
             </div>

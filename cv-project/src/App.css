@@ -102,7 +102,7 @@
 .welcome-message {
   font-size: 0.6rem;
   font-family: SofiaSerif;
-  width: 400px;
+  width: 40vw;
   height: fit-content;
   padding: 0.3rem;
   display: flex;
@@ -127,6 +127,7 @@
   background-clip: text;
   color: transparent;
   animation: gradient 10s ease infinite;
+  font-size: 0.7rem;
 }
 
 h2 {
@@ -142,11 +143,11 @@ h2 {
   background-clip: text;
   color: transparent;
   animation: gradient 10s ease infinite;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .happy {
-  font-size: 1rem;
+  font-size: 1.2rem;
   background: rgb(0, 0, 0);
   background: radial-gradient(
     circle,
@@ -159,6 +160,19 @@ h2 {
   color: transparent;
   animation: gradient 10s ease infinite;
   font-family: Roboto;
+}
+
+.start-btn {
+  font-size: 0.8rem;
+  height: 75px;
+  width: 100px;
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .welcome-message {
+    width: 70vw;
+  }
 }
 
 @media (max-width: 555px) {
