@@ -18,6 +18,7 @@ class ProfilePicture extends Component {
     reader.onloadend = () => {
       this.setState({
         pfp: reader.result,
+        reupload: false,
       });
     };
     reader.readAsDataURL(file);
