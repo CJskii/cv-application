@@ -87,6 +87,80 @@
   margin-bottom: 15px;
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.welcome-message {
+  font-size: 0.6rem;
+  font-family: SofiaSerif;
+  width: 400px;
+  height: fit-content;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.18),
+    0px 17px 50px rgba(0, 0, 0, 0.12), 10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-message > span {
+  font-family: SofiaSans;
+  background: radial-gradient(
+    circle,
+    rgb(223, 217, 166) 0%,
+    rgb(152, 161, 113) 50%,
+    rgb(131, 136, 86) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 10s ease infinite;
+}
+
+h2 {
+  margin: 1rem 0;
+  background: rgb(0, 0, 0);
+  background: radial-gradient(
+    circle,
+    rgb(244, 220, 185) 0%,
+    rgb(222, 222, 150) 50%,
+    rgb(200, 180, 128) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 10s ease infinite;
+  font-size: 1rem;
+}
+
+.happy {
+  font-size: 1rem;
+  background: rgb(0, 0, 0);
+  background: radial-gradient(
+    circle,
+    rgb(153, 235, 29) 0%,
+    rgb(185, 225, 8) 75%,
+    rgb(205, 232, 6) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 10s ease infinite;
+  font-family: Roboto;
+}
+
 @media (max-width: 555px) {
   .App {
     display: none;
