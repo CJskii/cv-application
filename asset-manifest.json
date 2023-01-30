@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/cv-application/static/css/main.bb2dff07.css",
-    "main.js": "/cv-application/static/js/main.7ec8798d.js",
-    "static/js/498.c29c2b0d.chunk.js": "/cv-application/static/js/498.c29c2b0d.chunk.js",
-    "static/js/703.01c4d2e6.chunk.js": "/cv-application/static/js/703.01c4d2e6.chunk.js",
-    "static/js/465.c4bbae2f.chunk.js": "/cv-application/static/js/465.c4bbae2f.chunk.js",
-    "static/media/Montserrat-VariableFont_wght.ttf": "/cv-application/static/media/Montserrat-VariableFont_wght.3faa3eef13649db02044.ttf",
-    "static/media/SofiaSans-VariableFont_wght.ttf": "/cv-application/static/media/SofiaSans-VariableFont_wght.8945c990d011340f50a1.ttf",
-    "static/media/Roboto-Regular.ttf": "/cv-application/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
-    "static/media/github.svg": "/cv-application/static/media/github.e0df113a06b188536803.svg",
-    "index.html": "/cv-application/index.html",
-    "static/media/add.svg": "/cv-application/static/media/add.46ae0e09d1132337aa92.svg",
-    "static/media/remove.svg": "/cv-application/static/media/remove.260546d7dd2eaed533a4.svg",
-    "main.bb2dff07.css.map": "/cv-application/static/css/main.bb2dff07.css.map",
-    "main.7ec8798d.js.map": "/cv-application/static/js/main.7ec8798d.js.map",
-    "498.c29c2b0d.chunk.js.map": "/cv-application/static/js/498.c29c2b0d.chunk.js.map",
-    "703.01c4d2e6.chunk.js.map": "/cv-application/static/js/703.01c4d2e6.chunk.js.map",
-    "465.c4bbae2f.chunk.js.map": "/cv-application/static/js/465.c4bbae2f.chunk.js.map"
+    "main.css": "/static/css/main.f6dade0c.css",
+    "main.js": "/static/js/main.0ddb211c.js",
+    "static/js/498.c29c2b0d.chunk.js": "/static/js/498.c29c2b0d.chunk.js",
+    "static/js/703.01c4d2e6.chunk.js": "/static/js/703.01c4d2e6.chunk.js",
+    "static/js/465.c4bbae2f.chunk.js": "/static/js/465.c4bbae2f.chunk.js",
+    "static/media/Montserrat-VariableFont_wght.ttf": "/static/media/Montserrat-VariableFont_wght.3faa3eef13649db02044.ttf",
+    "static/media/SofiaSans-VariableFont_wght.ttf": "/static/media/SofiaSans-VariableFont_wght.8945c990d011340f50a1.ttf",
+    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/github.svg": "/static/media/github.e0df113a06b188536803.svg",
+    "index.html": "/index.html",
+    "static/media/add.svg": "/static/media/add.46ae0e09d1132337aa92.svg",
+    "static/media/remove.svg": "/static/media/remove.260546d7dd2eaed533a4.svg",
+    "main.f6dade0c.css.map": "/static/css/main.f6dade0c.css.map",
+    "main.0ddb211c.js.map": "/static/js/main.0ddb211c.js.map",
+    "498.c29c2b0d.chunk.js.map": "/static/js/498.c29c2b0d.chunk.js.map",
+    "703.01c4d2e6.chunk.js.map": "/static/js/703.01c4d2e6.chunk.js.map",
+    "465.c4bbae2f.chunk.js.map": "/static/js/465.c4bbae2f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb2dff07.css",
-    "static/js/main.7ec8798d.js"
+    "static/css/main.f6dade0c.css",
+    "static/js/main.0ddb211c.js"
   ]
 }
