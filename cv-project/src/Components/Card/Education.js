@@ -16,7 +16,7 @@ const Education = () => {
         university: "Oxford University - UK",
       },
     ];
-    if (count == 2) {
+    if (count === 2) {
       arr.push({
         title: "Master in CS",
         dates: "JAN 2015 - DEC 2018",
