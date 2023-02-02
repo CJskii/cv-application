@@ -8,21 +8,16 @@ import ProfilePicture from "./ProfilePicture";
 class Card extends Component {
   constructor(props) {
     super();
-
-    this.state = {
-      photo: "your photo here",
-    };
   }
 
   render() {
-    const { links } = this.state;
     return (
       <div className="card-wrapper">
         {/* <img className="profile-picture" alt="pfp"></img> */}
         <ProfilePicture />
         <Contact />
         <Education />
-        <Links links={links} />
+        <Links />
         {/* // Card // Contact // Education // Links */}
       </div>
     );

@@ -1,73 +1,50 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Draggable from "react-draggable";
 import Icons from "../Icons";
 
-class Links extends Component {
-  constructor(props) {
-    super();
+const Links = () => {
+  const [github, setGithub] = useState("YourGithubAddress.com");
+  const [linkedin, setLinkedin] = useState("YourLinkedinAddress.com");
+  const [twitter, setTwitter] = useState("twitter.com/yourhandle");
+  const [portfolio, setPortfolio] = useState("linktoportfolio.com");
+  const [editBtn, setEditBtn] = useState(false);
+  const [form, setForm] = useState(false);
 
-    this.state = {
-      links: {
-        github: "YourGithubAddress.com",
-        linkedin: "YourLinkedInAddress.com",
-        twitter: "twitter.com/yourhandle",
-        portfolio: "linktoportfolio.com",
-      },
-      showEditBtn: false,
-      showForm: false,
-    };
+  const showEditBtn = () => {
+    setEditBtn(true);
+  };
 
-    this.showEditButton = this.showEditButton.bind(this);
-    this.showForm = this.showForm.bind(this);
-    this.displayForm = this.editForm.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-  }
+  const hideEditBtn = () => {
+    setEditBtn(false);
+  };
+  const showForm = () => {
+    setForm(true);
+  };
 
-  showEditButton() {
+  const hideForm = () => {
+    setForm(false);
+  };
+
+  const showEditButton = () => {
     return (
-      <button className="editBtn btn" onClick={this.showForm}>
+      <button className="editBtn btn" onClick={showForm}>
         EDIT
       </button>
     );
-  }
+  };
 
-  showForm() {
-    this.setState({
-      showForm: true,
-    });
-  }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-    let github = document.querySelector(".github-input");
-    let linkedin = document.querySelector(".linkedin-input");
-    let twitter = document.querySelector(".twitter-input");
-    let portfolio = document.querySelector(".portfolio-input");
-    this.setState({
-      links: {
-        github: github.value,
-        linkedin: linkedin.value,
-        twitter: twitter.value,
-        portfolio: portfolio.value,
-      },
-      showForm: false,
-    });
-  }
-
-  editForm() {
+  const displayForm = () => {
     return (
       <Draggable>
-        <form
-          className="links-form"
-          autoComplete="off"
-          onSubmit={(e) => this.handleFormSubmit(e)}
-        >
+        <form className="links-form" autoComplete="off" onSubmit={hideForm}>
           <label htmlFor="github">Github</label>
           <input
             placeholder="github.com/yourhandle"
             id="github"
             className="github-input"
             type="text"
+            value={github}
+            onChange={(e) => setGithub(e.target.value)}
           />
           <label htmlFor="linkedin">LinkedIn</label>
           <input
@@ -75,6 +52,8 @@ class Links extends Component {
             id="linkedin"
             className="linkedin-input"
             type="text"
+            value={linkedin}
+            onChange={(e) => setLinkedin(e.target.value)}
           />
           <label htmlFor="twitter">Twitter</label>
           <input
@@ -82,6 +61,8 @@ class Links extends Component {
             id="twitter"
             className="twitter-input"
             type="text"
+            value={twitter}
+            onChange={(e) => setTwitter(e.target.value)}
           />
           <label htmlFor="portfolio">Portfolio</label>
           <input
@@ -89,87 +70,73 @@ class Links extends Component {
             id="portfolio"
             className="portfolio-input"
             type="text"
+            value={portfolio}
+            onChange={(e) => setPortfolio(e.target.value)}
           />
           <div className="btn-wrapper">
             <button type="submit" className="submitBtn btn">
               Submit
             </button>
-            <button
-              type="button"
-              onClick={(e) => this.setState({ showForm: false })}
-              className="closeBtn btn"
-            >
+            <button type="button" onClick={hideForm} className="closeBtn btn">
               Close
             </button>
           </div>
         </form>
       </Draggable>
     );
-  }
+  };
 
-  render() {
-    const { links } = this.state;
+  return (
+    <div
+      className="links-container"
+      onMouseEnter={showEditBtn}
+      onMouseLeave={hideEditBtn}
+    >
+      <span className="card-header">MY LINKS</span>
+      {editBtn && showEditButton()}
+      <div className="links-wrapper">
+        <div className="card-divider"></div>
+        {github !== "" ? (
+          <div className="link-wrapper">
+            <img className="github-link-icon" src={Icons.github} alt="github" />
+            <div className="github-link"> {github}</div>
+          </div>
+        ) : null}
+        {linkedin !== "" ? (
+          <div className="link-wrapper">
+            <img
+              className="linkedin-link-icon"
+              src={Icons.linkedin}
+              alt="linkedin"
+            />
+            <div className="linkedin"> {linkedin}</div>
+          </div>
+        ) : null}
+        {twitter !== "" ? (
+          <div className="link-wrapper">
+            <img
+              className="twitter-link-icon"
+              src={Icons.twitter}
+              alt="twitter"
+            />
+            <div className="twitter"> {twitter}</div>
+          </div>
+        ) : null}
+        {portfolio !== "" ? (
+          <div className="link-wrapper">
+            <img
+              className="portfolio-link-icon"
+              src={Icons.portfolio}
+              alt="portfolio"
+            />
+            <div className="portfolio"> {portfolio}</div>
+          </div>
+        ) : null}
 
-    return (
-      <div
-        className="links-container"
-        onMouseEnter={() => {
-          this.setState({ showEditBtn: true });
-        }}
-        onMouseLeave={() => {
-          this.setState({ showEditBtn: false });
-        }}
-      >
-        <span className="card-header">MY LINKS</span>
-        {this.state.showEditBtn && this.showEditButton()}
-        <div className="links-wrapper">
-          <div className="card-divider"></div>
-          {links.github !== "" ? (
-            <div className="link-wrapper">
-              <img
-                className="github-link-icon"
-                src={Icons.github}
-                alt="github"
-              />
-              <div className="github-link"> {links.github}</div>
-            </div>
-          ) : null}
-          {links.linkedin !== "" ? (
-            <div className="link-wrapper">
-              <img
-                className="linkedin-link-icon"
-                src={Icons.linkedin}
-                alt="linkedin"
-              />
-              <div className="linkedin"> {links.linkedin}</div>
-            </div>
-          ) : null}
-          {links.twitter !== "" ? (
-            <div className="link-wrapper">
-              <img
-                className="twitter-link-icon"
-                src={Icons.twitter}
-                alt="twitter"
-              />
-              <div className="twitter"> {links.twitter}</div>
-            </div>
-          ) : null}
-          {links.twitter !== "" ? (
-            <div className="link-wrapper">
-              <img
-                className="portfolio-link-icon"
-                src={Icons.portfolio}
-                alt="portfolio"
-              />
-              <div className="portfolio"> {links.portfolio}</div>
-            </div>
-          ) : null}
-
-          {this.state.showForm && this.displayForm()}
-        </div>
+        {form && displayForm()}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Links;
