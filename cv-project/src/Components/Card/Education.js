@@ -1,268 +1,157 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Draggable from "react-draggable";
 
-class Education extends Component {
-  constructor(props) {
-    super();
+const Education = () => {
+  const [count, setCount] = useState("2");
+  const [education, setEducation] = useState([]);
 
-    this.state = {
-      education: {
+  const [editBtn, setEditBtn] = useState(false);
+  const [form, setShowForm] = useState(false);
+
+  useEffect(() => {
+    let arr = [
+      {
         title: "Master in Javascript",
         dates: "JAN 2019 - DEC 2022",
-        uni: "Oxford University - UK",
-        title2: "Master in CS",
-        dates2: "JAN 2015 - DEC 2018",
-        uni2: "London University - UK",
+        university: "Oxford University - UK",
       },
-      showEditBtn: false,
-      showForm: false,
-      count: 2,
-    };
-
-    this.showEditButton = this.showEditButton.bind(this);
-    this.showForm = this.showForm.bind(this);
-    this.displayForm = this.editForm.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.addEducation = this.addEducation.bind(this);
-    this.removeEducation = this.removeEducation.bind(this);
-  }
-
-  showForm() {
-    this.setState({
-      showForm: true,
-    });
-  }
-
-  addEducation() {
-    let count = this.state.count;
-    if (count < 2) {
-      this.setState({
-        count: 2,
-      });
-    } else {
-      return;
-    }
-  }
-
-  removeEducation() {
-    this.setState({
-      count: 1,
-    });
-  }
-
-  editForm() {
-    let count = this.state.count;
-    if (count === 1) {
-      return (
-        <Draggable>
-          <form
-            className="education-form"
-            autoComplete="off"
-            onSubmit={(e) => this.handleFormSubmit(e)}
-          >
-            <i className="add" onClick={this.addEducation}></i>
-            <label htmlFor="title">Degree</label>
-            <input
-              placeholder="Master in Javascript"
-              id="title"
-              className="title-form t1"
-              type="text"
-              required
-            />
-            <label htmlFor="dates">Dates</label>
-            <input
-              placeholder="JAN 2019 - DEC 2022"
-              id="dates"
-              className="dates-form d1"
-              type="text"
-              required
-            />
-            <label htmlFor="uni">University/School</label>
-            <input
-              placeholder="Oxford University - UK"
-              id="uni"
-              className="uni-form u1"
-              type="text"
-              required
-            />
-            <div className="btn-wrapper">
-              <button type="submit" className="submitBtn btn">
-                Submit
-              </button>
-              <button
-                type="button"
-                onClick={(e) => this.setState({ showForm: false })}
-                className="closeBtn btn"
-              >
-                Close
-              </button>
-            </div>
-          </form>
-        </Draggable>
-      );
-    } else {
-      return (
-        <Draggable>
-          <form
-            className="education-form"
-            autoComplete="off"
-            onSubmit={(e) => this.handleFormSubmit(e)}
-          >
-            <i className="remove" onClick={this.removeEducation}></i>
-            <label htmlFor="title1">Degree 1</label>
-            <input
-              placeholder="Master in Javascript"
-              id="title1"
-              className="title-form t1"
-              type="text"
-            />
-            <label htmlFor="dates1">Dates 1</label>
-            <input
-              placeholder="JAN 2019 - DEC 2022"
-              id="dates1"
-              className="dates-form d1"
-              type="text"
-            />
-            <label htmlFor="uni1">University/School 1</label>
-            <input
-              placeholder="Oxford University - UK"
-              id="uni1"
-              className="uni-form u1"
-              type="text"
-            />
-            <label htmlFor="title2">Degree 2</label>
-            <input
-              placeholder="Master in CS"
-              id="title2"
-              className="title-form t2"
-              type="text"
-            />
-            <label htmlFor="dates2">Dates 2</label>
-            <input
-              placeholder="JAN 2019 - DEC 2022"
-              id="dates2"
-              className="dates-form d2"
-              type="text"
-            />
-            <label htmlFor="uni2">University/School 2</label>
-            <input
-              placeholder="London University - UK"
-              id="uni2"
-              className="uni-form u2"
-              type="text"
-            />
-            <div className="btn-wrapper">
-              <button type="submit" className="submitBtn btn">
-                Submit
-              </button>
-              <button
-                type="button"
-                onClick={(e) => this.setState({ showForm: false })}
-                className="closeBtn btn"
-              >
-                Close
-              </button>
-            </div>
-          </form>
-        </Draggable>
-      );
-    }
-  }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-    let title = document.querySelector(".t1");
-    let dates = document.querySelector(".d1");
-    let uni = document.querySelector(".u1");
-    let title2 = document.querySelector(".t2");
-    let dates2 = document.querySelector(".d2");
-    let uni2 = document.querySelector(".u2");
-    if (this.state.count === 1) {
-      this.setState({
-        education: {
-          title: title.value,
-          dates: dates.value,
-          uni: uni.value,
-        },
-        showForm: false,
-      });
-    } else {
-      this.setState({
-        education: {
-          title: title.value,
-          dates: dates.value,
-          uni: uni.value,
-          title2: title2.value,
-          dates2: dates2.value,
-          uni2: uni2.value,
-        },
-        showForm: false,
+    ];
+    if (count == 2) {
+      arr.push({
+        title: "Master in CS",
+        dates: "JAN 2015 - DEC 2018",
+        university: "London University - UK",
       });
     }
-  }
+    setEducation(arr);
+  }, [count]);
 
-  showEditButton() {
+  const showEditBtn = () => {
+    console.log(education);
+    setEditBtn(true);
+  };
+
+  const hideEditBtn = () => {
+    setEditBtn(false);
+  };
+
+  const showForm = () => {
+    setShowForm(true);
+  };
+
+  const hideForm = () => {
+    setShowForm(false);
+  };
+
+  const countClick = () => {
+    setCount(count === 1 ? 2 : 1);
+  };
+
+  const displayEditButton = () => {
     return (
-      <button className="editBtn btn" onClick={this.showForm}>
+      <button className="editBtn btn" onClick={showForm}>
         EDIT
       </button>
     );
-  }
+  };
 
-  render() {
-    const { education } = this.state;
-    if (this.state.count === 1) {
-      return (
-        <div
-          className="education-container"
-          onMouseEnter={() => {
-            this.setState({ showEditBtn: true });
-          }}
-          onMouseLeave={() => {
-            this.setState({ showEditBtn: false });
-          }}
-        >
-          <div className="education-wrapper">
-            <span className="card-header">EDUCATION</span>
-            <div className="card-divider"></div>
-            <div className="education-title">{education.title}</div>
-            <div className="dates">{education.dates}</div>
-            <div className="uni">{education.uni}</div>
-            {this.state.showEditBtn && this.showEditButton()}
-            {this.state.showForm && this.displayForm()}
-          </div>
-        </div>
-      );
-    } else if (this.state.count === 2) {
-      return (
-        <div
-          className="education-container"
-          onMouseEnter={() => {
-            this.setState({ showEditBtn: true });
-          }}
-          onMouseLeave={() => {
-            this.setState({ showEditBtn: false });
-          }}
-        >
-          <span className="card-header">EDUCATION</span>
-          {this.state.showEditBtn && this.showEditButton()}
-          <div className="education-wrapper">
-            <div className="card-divider"></div>
-            <div className="education-title">{education.title}</div>
-            <div className="dates">{education.dates}</div>
-            <div className="uni">{education.uni}</div>
+  const handleTitleChange = (e, index) => {
+    const updatedEdu = [...education];
+    updatedEdu[index].title = e.target.value;
+    setEducation(updatedEdu);
+  };
 
-            {this.state.showForm && this.displayForm()}
+  const handleDatesChange = (e, index) => {
+    const updatedEdu = [...education];
+    updatedEdu[index].dates = e.target.value;
+    setEducation(updatedEdu);
+  };
+
+  const handleUniChange = (e, index) => {
+    const updatedEdu = [...education];
+    updatedEdu[index].university = e.target.value;
+    setEducation(updatedEdu);
+  };
+
+  const displayForm = () => {
+    return (
+      <Draggable>
+        <form className="education-form" autoComplete="off" onSubmit={hideForm}>
+          {count === 1 ? (
+            <i className="add" onClick={countClick}></i>
+          ) : (
+            <i className="remove" onClick={countClick}></i>
+          )}
+
+          {education.map((edu, index) => (
+            <div className="edu-wrap" key={index}>
+              <label htmlFor={`title-${index}`}>Degree</label>
+              <input
+                placeholder={edu.title}
+                id={`title-${index}`}
+                className={`title-form t${index + 1}`}
+                type="text"
+                required
+                value={edu.title}
+                onChange={(e) => handleTitleChange(e, index)}
+              />
+              <label htmlFor={`dates-${index}`}>Dates</label>
+              <input
+                placeholder={edu.dates}
+                id={`dates-${index}`}
+                className={`dates-form d${index + 1}`}
+                type="text"
+                required
+                value={edu.dates}
+                onChange={(e) => handleDatesChange(e, index)}
+              />
+              <label htmlFor={`uni-${index}`}>University/School</label>
+              <input
+                placeholder={edu.university}
+                id={`uni-${index}`}
+                className={`uni-form u${index + 1}`}
+                type="text"
+                required
+                value={edu.university}
+                onChange={(e) => handleUniChange(e, index)}
+              />
+            </div>
+          ))}
+          <div className="btn-wrapper">
+            <button type="submit" className="submitBtn btn">
+              Submit
+            </button>
+            <button type="button" onClick={hideForm} className="closeBtn btn">
+              Close
+            </button>
           </div>
-          <div className="education-wrapper">
-            <div className="education-title">{education.title2}</div>
-            <div className="dates">{education.dates2}</div>
-            <div className="uni">{education.uni2}</div>
+        </form>
+      </Draggable>
+    );
+  };
+
+  return (
+    <div
+      className="education-container"
+      onMouseEnter={showEditBtn}
+      onMouseLeave={hideEditBtn}
+    >
+      <div className="education-wrapper">
+        <span className="card-header">EDUCATION</span>
+        <div className="card-divider"></div>
+        {education.map((edu, index) => (
+          <div key={index}>
+            <div className="education-title">{edu.title}</div>
+            <div className="dates">{edu.dates}</div>
+            <div className="uni">{edu.university}</div>
           </div>
-        </div>
-      );
-    }
-  }
-}
+        ))}
+
+        {editBtn && displayEditButton()}
+        {form && displayForm()}
+      </div>
+    </div>
+  );
+};
 
 export default Education;

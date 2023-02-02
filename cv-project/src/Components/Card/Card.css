@@ -139,8 +139,15 @@
   height: fit-content;
 }
 
+.edu-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .contact-form > label,
-.education-form > label {
+.education-form > div > label {
   font-size: 0.6rem;
   padding: 0.1rem 0;
 }
