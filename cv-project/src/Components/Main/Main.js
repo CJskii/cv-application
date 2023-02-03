@@ -1,53 +1,81 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Profile from "./Profile";
 import Work from "./Work";
 import Skills from "./Skills";
 import "./Main.css";
 
-class Main extends Component {
-  constructor() {
-    super();
+const Main = () => {
+  const [workCount, setWorkCount] = useState(3);
 
-    this.state = {
-      workCount: 3,
-    };
+  const workCountUp = () => {
+    setWorkCount(workCount + 1);
+  };
 
-    this.workCountUp = this.workCountUp.bind(this);
-    this.workCountDown = this.workCountDown.bind(this);
-    this.workCount = this.state.workCount;
-    this.skillCount = this.state.skillCount;
-  }
+  const workCountDown = () => {
+    setWorkCount(workCount - 1);
+  };
 
-  workCountUp() {
-    this.setState({
-      workCount: this.state.workCount + 1,
-    });
-  }
+  return (
+    <div className="main-wrapper">
+      <Profile />
+      <Work
+        workCountUp={workCountUp}
+        workCountDown={workCountDown}
+        workCount={workCount}
+      />
+      <Skills
+        skillCountUp={workCountUp}
+        skillCountDown={workCountDown}
+        workCount={workCount}
+      />
+    </div>
+  );
+};
 
-  workCountDown() {
-    this.setState({
-      workCount: this.state.workCount - 1,
-    });
-  }
+// class Main extends Component {
+//   constructor() {
+//     super();
 
-  render() {
-    return (
-      <div className="main-wrapper">
-        <Profile />
-        <Work
-          workCountUp={this.workCountUp}
-          workCountDown={this.workCountDown}
-          workCount={this.state.workCount}
-        />
-        <Skills
-          skillCountUp={this.skillCountUp}
-          skillCountDown={this.skillCountDown}
-          workCount={this.state.workCount}
-          skillCount={this.skillCount}
-        />
-      </div>
-    );
-  }
-}
+//     this.state = {
+//       workCount: 3,
+//     };
+
+//     this.workCountUp = this.workCountUp.bind(this);
+//     this.workCountDown = this.workCountDown.bind(this);
+//     this.workCount = this.state.workCount;
+//     this.skillCount = this.state.skillCount;
+//   }
+
+//   workCountUp() {
+//     this.setState({
+//       workCount: this.state.workCount + 1,
+//     });
+//   }
+
+//   workCountDown() {
+//     this.setState({
+//       workCount: this.state.workCount - 1,
+//     });
+//   }
+
+//   render() {
+//     return (
+//       <div className="main-wrapper">
+//         <Profile />
+//         <Work
+//           workCountUp={this.workCountUp}
+//           workCountDown={this.workCountDown}
+//           workCount={this.state.workCount}
+//         />
+//         <Skills
+//           skillCountUp={this.skillCountUp}
+//           skillCountDown={this.skillCountDown}
+//           workCount={this.state.workCount}
+//           skillCount={this.skillCount}
+//         />
+//       </div>
+//     );
+//   }
+// }
 
 export default Main;

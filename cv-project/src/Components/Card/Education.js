@@ -16,7 +16,8 @@ const Education = () => {
         university: "Oxford University - UK",
       },
     ];
-    if (count === 2) {
+    // eslint-disable-next-line
+    if (count == 2) {
       arr.push({
         title: "Master in CS",
         dates: "JAN 2015 - DEC 2018",
@@ -27,7 +28,6 @@ const Education = () => {
   }, [count]);
 
   const showEditBtn = () => {
-    console.log(education);
     setEditBtn(true);
   };
 

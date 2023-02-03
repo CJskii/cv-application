@@ -1,158 +1,110 @@
-import React, { Component } from "react";
-import uniqid from "uniqid";
+import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 
-class Work extends Component {
-  constructor() {
-    super();
+const Work = (props) => {
+  const [work, setWork] = useState([]);
+  const workCount = props.workCount;
+  useEffect(() => {
+    let arr = [];
+    for (let i = 0; i < workCount; i++) {
+      arr.push({
+        title: "Senior Manager",
+        company: "YOUR Company",
+        location: "Paris - France",
+        dates: "JAN 2020 - DEC 2023",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
+        showButton: false,
+        showForm: false,
+        showDeleteButton: false,
+      });
+    }
+    setWork(arr);
+  }, [workCount]);
 
-    this.state = {
-      work: this.workTemplate(),
-      jobs: [this.workTemplate(), this.workTemplate(), this.workTemplate()],
-    };
+  const showEditBtn = (index) => {
+    const updatedWork = [...work];
+    updatedWork[index].showButton = true;
+    setWork(updatedWork);
+  };
 
-    this.showButton = this.showButton.bind(this);
-    this.hideButton = this.hideButton.bind(this);
-    this.showForm = this.showForm.bind(this);
-    this.showDeleteButton = this.showDeleteButton.bind(this);
-    this.hideDeleteButton = this.hideDeleteButton.bind(this);
-    this.deleteJob = this.deleteJob.bind(this);
-    this.addJob = this.handleAddingTaks.bind(this);
-    this.closeForm = this.closeForm.bind(this);
-  }
+  const hideEditBtn = (index) => {
+    const updatedWork = [...work];
+    updatedWork[index].showButton = false;
+    setWork(updatedWork);
+  };
 
-  workTemplate() {
-    return {
-      title: "Senior Manager",
-      company: "YOUR Company",
-      location: "Paris - France",
-      dates: "JAN 2020 - DEC 2023",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
-      id: uniqid(),
-      showButton: false,
-      showForm: false,
-      showDeleteButton: false,
-    };
-  }
+  const showDeleteButton = (index) => {
+    const updatedWork = [...work];
+    updatedWork[index].showDeleteButton = true;
+    setWork(updatedWork);
+  };
 
-  showButton(id) {
-    this.setState((prevState) => {
-      let jobs = this.state.jobs;
-      let work = jobs.find((work) => work.id === id);
-      work.showButton = true;
-      return { jobs };
-    });
-  }
+  const hideDeleteButton = (index) => {
+    const updatedWork = [...work];
+    updatedWork[index].showDeleteButton = false;
+    setWork(updatedWork);
+  };
 
-  hideButton(id) {
-    this.setState((prevState) => {
-      let jobs = this.state.jobs;
-      let work = jobs.find((work) => work.id === id);
-      work.showButton = false;
-      return { jobs };
-    });
-  }
+  const showForm = (index) => {
+    console.log(work);
+    const updatedWork = [...work];
+    updatedWork[index].showForm = true;
+    setWork(updatedWork);
+  };
 
-  button(id) {
+  const hideForm = (index) => {
+    const updatedWork = [...work];
+    updatedWork[index].showForm = false;
+    setWork(updatedWork);
+  };
+
+  const displayEditButton = (index) => {
     return (
-      <button onClick={() => this.showForm(id)} className="editBtn btn">
+      <button className="editBtn btn" onClick={() => showForm(index)}>
         EDIT
       </button>
     );
-  }
+  };
 
-  showDeleteButton(id) {
-    this.setState((prevState) => {
-      let jobs = this.state.jobs;
-      let work = jobs.find((work) => work.id === id);
-      work.showDeleteButton = true;
-      return { jobs };
-    });
-  }
-
-  hideDeleteButton(id) {
-    this.setState((prevState) => {
-      let jobs = this.state.jobs;
-      let work = jobs.find((work) => work.id === id);
-      work.showDeleteButton = false;
-      return { jobs };
-    });
-  }
-
-  deleteButton(id) {
+  const displayDeleteButton = (index) => {
     return (
       <button
         onClick={() => {
-          this.deleteJob(id);
-          this.props.workCountDown();
+          deleteJob(index);
+          props.workCountDown();
         }}
         className="deleteBtn btn"
       >
         DELETE
       </button>
     );
-  }
+  };
 
-  deleteJob(id) {
-    this.setState({
-      jobs: this.state.jobs.filter((task) => task.id !== id),
-    });
-  }
-
-  addButton() {
+  const displayAddButton = () => {
     return (
       <button
         onClick={() => {
-          this.addJob();
-          this.props.workCountUp();
+          props.workCountUp();
         }}
         className="addBtn btn"
       >
         ADD
       </button>
     );
-  }
+  };
 
-  handleAddingTaks() {
-    this.setState({
-      work: this.workTemplate(),
-      jobs: this.state.jobs.concat(this.state.work),
-    });
-  }
-
-  showForm(id) {
-    this.setState((prevState) => {
-      let jobs = this.state.jobs;
-      let work = jobs.find((work) => work.id === id);
-      work.showForm = true;
-      return { jobs };
-    });
-  }
-
-  closeForm(e, id) {
-    this.setState((prevState) => {
-      let jobs = this.state.jobs;
-      let job = jobs.find((job) => job.id === id);
-      job.showForm = false;
-      return { jobs };
-    });
-  }
-
-  form(id) {
+  const displayForm = (index) => {
     return (
       <Draggable>
-        <form
-          className="work-form"
-          autoComplete="off"
-          onSubmit={(e) => this.handleEditJob(e, id)}
-        >
+        <form className="work-form" autoComplete="off" onSubmit={hideForm}>
           <label htmlFor="title">Title</label>
           <input
             id="title"
             type="text"
             placeholder="Enter job title"
             required
+            onChange={(e) => handleTitleChange(e, index)}
           />
           <label htmlFor="company">Company</label>
           <input
@@ -160,6 +112,7 @@ class Work extends Component {
             type="text"
             placeholder="Enter company name"
             required
+            onChange={(e) => handleCompanyChange(e, index)}
           />
           <label htmlFor="location">Location</label>
           <input
@@ -167,6 +120,7 @@ class Work extends Component {
             type="text"
             placeholder="Enter location name"
             required
+            onChange={(e) => handleLocationChange(e, index)}
           />
           <label htmlFor="dates">Dates</label>
           <input
@@ -174,6 +128,7 @@ class Work extends Component {
             type="text"
             placeholder="JAN 2019 - DEC 2022"
             required
+            onChange={(e) => handleDatesChange(e, index)}
           />
           <label htmlFor="descwork">Description</label>
           <textarea
@@ -181,6 +136,7 @@ class Work extends Component {
             type="text"
             placeholder="Enter short description of your duties..."
             required
+            onChange={(e) => handleWorkDescriptionChange(e, index)}
           />
           <div className="btn-wrapper">
             <button type="submit" className="submitBtn btn">
@@ -188,7 +144,7 @@ class Work extends Component {
             </button>
             <button
               type="button"
-              onClick={(e) => this.closeForm(e, id)}
+              onClick={() => hideForm(index)}
               className="closeBtn btn"
             >
               Close
@@ -197,69 +153,85 @@ class Work extends Component {
         </form>
       </Draggable>
     );
-  }
+  };
 
-  handleEditJob(e, id) {
-    e.preventDefault();
-    this.setState((prevState) => {
-      let jobs = this.state.jobs;
-      let job = jobs.find((job) => job.id === id);
-      job.title = e.target.elements.title.value;
-      job.company = e.target.elements.company.value;
-      job.location = e.target.elements.location.value;
-      job.dates = e.target.elements.dates.value;
-      job.description = e.target.elements.descwork.value;
-      job.showForm = false;
-      return { jobs };
-    });
-  }
+  const handleTitleChange = (e, index) => {
+    const updatedWork = [...work];
+    updatedWork[index].title = e.target.value;
+    setWork(updatedWork);
+  };
 
-  render() {
-    return (
-      <div className="work-container">
-        <div className="work-wrapper">
-          <div className="work-header">
-            WORK EXPERIENCE
-            <div className="work-divider"></div>
-          </div>
-          {this.state.jobs.map((work, index) => {
-            return (
-              <div
-                className="work-content-wrapper"
-                key={work.id}
-                onMouseEnter={() => {
-                  this.showButton(work.id);
-                  this.showDeleteButton(work.id);
-                }}
-                onMouseLeave={() => {
-                  this.hideButton(work.id);
-                  this.hideDeleteButton(work.id);
-                }}
-              >
-                {this.state.jobs.find((job) => job.id === work.id).showButton &&
-                  this.button(work.id)}
-                {this.state.jobs.find((job) => job.id === work.id)
-                  .showDeleteButton && this.deleteButton(work.id)}
-                {this.state.jobs.find((job) => job.id === work.id).showForm &&
-                  this.form(work.id)}
-                <div className="work-content">
-                  <div className="work-info">
-                    <div className="work-title">{work.title}</div>
-                    <span className="work-span">
-                      {work.company}, {work.location}
-                    </span>
-                  </div>
-                  <span className="work-dates">{work.dates}</span>
-                </div>
-                <div className="work-text">{work.description}</div>
-              </div>
-            );
-          })}
+  const handleCompanyChange = (e, index) => {
+    const updatedWork = [...work];
+    updatedWork[index].company = e.target.value;
+    setWork(updatedWork);
+  };
+
+  const handleLocationChange = (e, index) => {
+    const updatedWork = [...work];
+    updatedWork[index].location = e.target.value;
+    setWork(updatedWork);
+  };
+
+  const handleDatesChange = (e, index) => {
+    const updatedWork = [...work];
+    updatedWork[index].dates = e.target.value;
+    setWork(updatedWork);
+  };
+
+  const handleWorkDescriptionChange = (e, index) => {
+    const updatedWork = [...work];
+    updatedWork[index].description = e.target.value;
+    setWork(updatedWork);
+  };
+
+  const deleteJob = (index) => {
+    const updatedWork = work;
+    updatedWork.splice(index, 1);
+    setWork(updatedWork);
+  };
+
+  return (
+    <div className="work-container">
+      <div className="work-wrapper">
+        <div className="work-header">
+          WORK EXPERIENCE
+          <div className="work-divider"></div>
         </div>
-        {this.props.workCount < 3 && this.addButton()}
+        {work.map((job, index) => {
+          return (
+            <div
+              className="work-content-wrapper"
+              key={index}
+              onMouseEnter={() => {
+                showEditBtn(index);
+                showDeleteButton(index);
+              }}
+              onMouseLeave={() => {
+                hideEditBtn(index);
+                hideDeleteButton(index);
+              }}
+            >
+              {work[index].showButton && displayEditButton(index)}
+              {work[index].showForm && displayForm(index)}
+              {work[index].showDeleteButton && displayDeleteButton(index)}
+              <div className="work-content">
+                <div className="work-info">
+                  <div className="work-title">{work[index].title}</div>
+                  <span className="work-span">
+                    {work[index].company}, {work[index].location}
+                  </span>
+                </div>
+                <span className="work-dates">{work[index].dates}</span>
+              </div>
+              <div className="work-text">{work[index].description}</div>
+            </div>
+          );
+        })}
       </div>
-    );
-  }
-}
+      {props.workCount < 3 && displayAddButton()}
+    </div>
+  );
+};
 
 export default Work;

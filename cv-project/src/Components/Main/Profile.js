@@ -1,113 +1,81 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Draggable from "react-draggable";
 
-class Profile extends Component {
-  constructor() {
-    super();
+const Profile = () => {
+  const [description, setDescription] = useState(
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official!"
+  );
+  const [editBtn, setEditBtn] = useState(false);
+  const [form, setShowForm] = useState(false);
 
-    this.state = {
-      description: {
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official!",
-      },
-      showButton: false,
-      showForm: false,
-    };
+  const showEditBtn = () => {
+    setEditBtn(true);
+  };
 
-    this.showButton = this.showButton.bind(this);
-    this.hideButton = this.hideButton.bind(this);
-    this.showForm = this.showForm.bind(this);
-    this.submitForm = this.submitForm.bind(this);
-  }
+  const hideEditBtn = () => {
+    setEditBtn(false);
+  };
 
-  showButton() {
-    this.setState({
-      showButton: true,
-    });
-  }
+  const showForm = () => {
+    setShowForm(true);
+  };
 
-  showForm() {
-    this.setState({
-      showForm: true,
-    });
-  }
+  const hideForm = () => {
+    setShowForm(false);
+  };
 
-  hideButton() {
-    this.setState({
-      showButton: false,
-    });
-  }
-
-  submitForm(e) {
-    e.preventDefault();
-    let textarea = document.getElementById("text-area");
-    this.setState({
-      description: { text: textarea.value },
-      showForm: false,
-    });
-  }
-
-  button() {
+  const displayEditButton = () => {
     return (
-      <button className="editBtn btn" onClick={this.showForm}>
+      <button className="editBtn btn" onClick={showForm}>
         EDIT
       </button>
     );
-  }
+  };
 
-  editForm() {
+  const displayForm = () => {
     return (
       <Draggable>
-        <form
-          className="profile-form"
-          autoComplete="off"
-          onSubmit={(e) => this.submitForm(e)}
-        >
+        <form className="profile-form" autoComplete="off" onSubmit={hideForm}>
           <label htmlFor="text-area">Your profile description</label>
           <textarea
             placeholder="Type short introduction about yourself..."
             id="text-area"
             type="text"
             required
+            onChange={(e) => setDescription(e.target.value)}
           />
           <div className="btn-wrapper">
             <button type="submit" className="submitBtn btn">
               Submit
             </button>
-            <button
-              type="button"
-              onClick={(e) => this.setState({ showForm: false })}
-              className="closeBtn btn"
-            >
+            <button type="button" onClick={hideForm} className="closeBtn btn">
               Close
             </button>
           </div>
         </form>
       </Draggable>
     );
-  }
+  };
 
-  render() {
-    const { description } = this.state;
-    return (
-      <div
-        className="profile-container"
-        onMouseEnter={this.showButton}
-        onMouseLeave={this.hideButton}
-      >
-        {this.state.showButton && this.button()}
+  return (
+    <div
+      className="profile-container"
+      onMouseEnter={showEditBtn}
+      onMouseLeave={hideEditBtn}
+    >
+      {editBtn && displayEditButton()}
 
-        <div className="profile-wrapper">
-          <div className="profile-header">
-            PROFILE
-            <div className="profile-divider"></div>
-          </div>
-
-          <div className="profile-text">{description.text}</div>
+      <div className="profile-wrapper">
+        <div className="profile-header">
+          PROFILE
+          <div className="profile-divider"></div>
         </div>
-        {this.state.showForm && this.editForm()}
+
+        <div className="profile-text">{description}</div>
       </div>
-    );
-  }
-}
+      {form && displayForm()}
+    </div>
+  );
+};
 
 export default Profile;
