@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
-// implement uniqid - it does not delete the correct work going off index
 import uniqid from "uniqid";
 
 const Work = (props) => {
@@ -9,72 +8,86 @@ const Work = (props) => {
   useEffect(() => {
     let arr = [];
     for (let i = 0; i < workCount; i++) {
-      arr.push({
-        title: "Senior Manager",
-        company: "YOUR Company",
-        location: "Paris - France",
-        dates: "JAN 2020 - DEC 2023",
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
-        showButton: false,
-        showForm: false,
-        showDeleteButton: false,
-        id: uniqid(),
-      });
+      arr.push(workTemplate());
     }
     setWork(arr);
-  }, [workCount]);
+    // eslint-disable-next-line
+  }, []);
 
-  const showEditBtn = (index) => {
+  const workTemplate = () => {
+    return {
+      title: "Senior Manager",
+      company: "YOUR Company",
+      location: "Paris - France",
+      dates: "JAN 2020 - DEC 2023",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex official! Lorem ipsum dolor sit amet consectetur adipisicing elit.Iste, ex official!",
+      showButton: false,
+      showForm: false,
+      showDeleteButton: false,
+      id: uniqid(),
+    };
+  };
+
+  const findElementIndex = (id) => {
+    return work.findIndex((element) => element.id === id);
+  };
+
+  const showEditBtn = (id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].showButton = true;
     setWork(updatedWork);
   };
 
-  const hideEditBtn = (index) => {
+  const hideEditBtn = (id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].showButton = false;
     setWork(updatedWork);
   };
 
-  const showDeleteButton = (index) => {
+  const showDeleteButton = (id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].showDeleteButton = true;
     setWork(updatedWork);
   };
 
-  const hideDeleteButton = (index) => {
+  const hideDeleteButton = (id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].showDeleteButton = false;
     setWork(updatedWork);
   };
 
-  const showForm = (index) => {
-    console.log(work);
+  const showForm = (id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].showForm = true;
     setWork(updatedWork);
   };
 
-  const hideForm = (index) => {
+  const hideForm = (id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].showForm = false;
     setWork(updatedWork);
   };
 
-  const displayEditButton = (index) => {
+  const displayEditButton = (id) => {
     return (
-      <button className="editBtn btn" onClick={() => showForm(index)}>
+      <button className="editBtn btn" onClick={() => showForm(id)}>
         EDIT
       </button>
     );
   };
 
-  const displayDeleteButton = (index) => {
+  const displayDeleteButton = (id) => {
     return (
       <button
         onClick={() => {
-          deleteJob(index);
+          deleteJob(id);
           props.workCountDown();
         }}
         className="deleteBtn btn"
@@ -89,6 +102,7 @@ const Work = (props) => {
       <button
         onClick={() => {
           props.workCountUp();
+          handleAddingWork();
         }}
         className="addBtn btn"
       >
@@ -97,13 +111,13 @@ const Work = (props) => {
     );
   };
 
-  const displayForm = (index) => {
+  const displayForm = (id) => {
     return (
       <Draggable>
         <form
           className="work-form"
           autoComplete="off"
-          onSubmit={() => hideForm(index)}
+          onSubmit={() => hideForm(id)}
         >
           <label htmlFor="title">Title</label>
           <input
@@ -111,7 +125,7 @@ const Work = (props) => {
             type="text"
             placeholder="Enter job title"
             required
-            onChange={(e) => handleTitleChange(e, index)}
+            onChange={(e) => handleTitleChange(e, id)}
           />
           <label htmlFor="company">Company</label>
           <input
@@ -119,7 +133,7 @@ const Work = (props) => {
             type="text"
             placeholder="Enter company name"
             required
-            onChange={(e) => handleCompanyChange(e, index)}
+            onChange={(e) => handleCompanyChange(e, id)}
           />
           <label htmlFor="location">Location</label>
           <input
@@ -127,7 +141,7 @@ const Work = (props) => {
             type="text"
             placeholder="Enter location name"
             required
-            onChange={(e) => handleLocationChange(e, index)}
+            onChange={(e) => handleLocationChange(e, id)}
           />
           <label htmlFor="dates">Dates</label>
           <input
@@ -135,7 +149,7 @@ const Work = (props) => {
             type="text"
             placeholder="JAN 2019 - DEC 2022"
             required
-            onChange={(e) => handleDatesChange(e, index)}
+            onChange={(e) => handleDatesChange(e, id)}
           />
           <label htmlFor="descwork">Description</label>
           <textarea
@@ -143,7 +157,7 @@ const Work = (props) => {
             type="text"
             placeholder="Enter short description of your duties..."
             required
-            onChange={(e) => handleWorkDescriptionChange(e, index)}
+            onChange={(e) => handleWorkDescriptionChange(e, id)}
           />
           <div className="btn-wrapper">
             <button type="submit" className="submitBtn btn">
@@ -151,7 +165,7 @@ const Work = (props) => {
             </button>
             <button
               type="button"
-              onClick={() => hideForm(index)}
+              onClick={() => hideForm(id)}
               className="closeBtn btn"
             >
               Close
@@ -162,40 +176,58 @@ const Work = (props) => {
     );
   };
 
-  const handleTitleChange = (e, index) => {
+  const handleTitleChange = (e, id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].title = e.target.value;
+    updatedWork[index].modified = true;
     setWork(updatedWork);
   };
 
-  const handleCompanyChange = (e, index) => {
+  const handleCompanyChange = (e, id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].company = e.target.value;
+    updatedWork[index].modified = true;
     setWork(updatedWork);
   };
 
-  const handleLocationChange = (e, index) => {
+  const handleLocationChange = (e, id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].location = e.target.value;
+    updatedWork[index].modified = true;
     setWork(updatedWork);
   };
 
-  const handleDatesChange = (e, index) => {
+  const handleDatesChange = (e, id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].dates = e.target.value;
+    updatedWork[index].modified = true;
     setWork(updatedWork);
   };
 
-  const handleWorkDescriptionChange = (e, index) => {
+  const handleWorkDescriptionChange = (e, id) => {
+    let index = findElementIndex(id);
     const updatedWork = [...work];
     updatedWork[index].description = e.target.value;
+    updatedWork[index].modified = true;
     setWork(updatedWork);
   };
 
-  const deleteJob = (index) => {
+  const deleteJob = (id) => {
+    let index = findElementIndex(id);
+    console.log(index);
     const updatedWork = work;
     updatedWork.splice(index, 1);
     setWork(updatedWork);
+  };
+
+  const handleAddingWork = () => {
+    const workArray = [...work];
+    workArray.push(workTemplate());
+    setWork(workArray);
   };
 
   return (
@@ -209,29 +241,38 @@ const Work = (props) => {
           return (
             <div
               className="work-content-wrapper"
-              key={index}
+              key={job.id}
               onMouseEnter={() => {
-                showEditBtn(index);
-                showDeleteButton(index);
+                showEditBtn(job.id);
+                showDeleteButton(job.id);
               }}
               onMouseLeave={() => {
-                hideEditBtn(index);
-                hideDeleteButton(index);
+                hideEditBtn(job.id);
+                hideDeleteButton(job.id);
               }}
             >
-              {work[index].showButton && displayEditButton(index)}
-              {work[index].showForm && displayForm(index)}
-              {work[index].showDeleteButton && displayDeleteButton(index)}
+              {work[findElementIndex(job.id)].showButton &&
+                displayEditButton(job.id)}
+              {work[findElementIndex(job.id)].showForm && displayForm(job.id)}
+              {work[findElementIndex(job.id)].showDeleteButton &&
+                displayDeleteButton(job.id)}
               <div className="work-content">
                 <div className="work-info">
-                  <div className="work-title">{work[index].title}</div>
+                  <div className="work-title">
+                    {work[findElementIndex(job.id)].title}
+                  </div>
                   <span className="work-span">
-                    {work[index].company}, {work[index].location}
+                    {work[findElementIndex(job.id)].company},{" "}
+                    {work[findElementIndex(job.id)].location}
                   </span>
                 </div>
-                <span className="work-dates">{work[index].dates}</span>
+                <span className="work-dates">
+                  {work[findElementIndex(job.id)].dates}
+                </span>
               </div>
-              <div className="work-text">{work[index].description}</div>
+              <div className="work-text">
+                {work[findElementIndex(job.id)].description}
+              </div>
             </div>
           );
         })}

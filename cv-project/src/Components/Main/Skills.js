@@ -50,7 +50,7 @@ const Skills = (props) => {
     setShowForm(false);
   };
 
-  const displayEditButton = (index) => {
+  const displayEditButton = () => {
     return (
       <button className="editBtn btn" onClick={showForm}>
         EDIT
@@ -63,7 +63,6 @@ const Skills = (props) => {
     const isInArray = updatedArray.find(
       (element) => element.name === skill.name
     );
-    console.log(isInArray);
     if (skillCount === 6 && !isInArray) return e.preventDefault();
     if (!skill.isChecked && skillCount < 6) {
       skill.isChecked = true;
@@ -97,6 +96,7 @@ const Skills = (props) => {
   };
 
   const handleCustomSkillAdd = (e) => {
+    // eslint-disable-next-line
     if (customSkill.name == "") return e.preventDefault();
     else if (skillCount < 6) {
       e.preventDefault();
@@ -172,15 +172,14 @@ const Skills = (props) => {
         </div>
         <div className="skills-content">
           {selectedSkills.length === 0
-            ? skills.map((skill, index) => {
+            ? // eslint-disable-next-line
+              skills.map((skill, index) => {
                 if (index < 6) return <span key={index}>{skill.name}</span>;
               })
             : selectedSkills.map((skill, index) => {
                 return <span key={index}>{skill.name}</span>;
               })}
         </div>
-
-        {/* <div className="skills-text">{description.text}</div> */}
       </div>
     </div>
   );
