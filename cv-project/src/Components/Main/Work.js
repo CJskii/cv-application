@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
+// implement uniqid - it does not delete the correct work going off index
+import uniqid from "uniqid";
 
 const Work = (props) => {
   const [work, setWork] = useState([]);
@@ -17,6 +19,7 @@ const Work = (props) => {
         showButton: false,
         showForm: false,
         showDeleteButton: false,
+        id: uniqid(),
       });
     }
     setWork(arr);
@@ -97,7 +100,11 @@ const Work = (props) => {
   const displayForm = (index) => {
     return (
       <Draggable>
-        <form className="work-form" autoComplete="off" onSubmit={hideForm}>
+        <form
+          className="work-form"
+          autoComplete="off"
+          onSubmit={() => hideForm(index)}
+        >
           <label htmlFor="title">Title</label>
           <input
             id="title"

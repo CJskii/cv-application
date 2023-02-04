@@ -1,5 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
-import uniqid from "uniqid";
+import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 
 const Skills = (props) => {
@@ -8,6 +7,7 @@ const Skills = (props) => {
   const [editBtn, setEditBtn] = useState(false);
   const [form, setShowForm] = useState(false);
   const [skillCount, setSkillCount] = useState(0);
+  const [customSkill, setCustomSkill] = useState({ name: "" });
 
   useEffect(() => {
     const arr = [
@@ -78,7 +78,39 @@ const Skills = (props) => {
       updatedArray.splice(index, 1);
       setSkillCount(skillCount - 1);
       setSelectedSkills(updatedArray);
+      if (isInArray.custom) {
+        const skillsArray = skills;
+        const index = skillsArray.findIndex((element) => element === isInArray);
+        skillsArray[index].isChecked = false;
+        setSkills(skillsArray);
+      }
     }
+  };
+
+  const handleCustomSkillEdit = (e) => {
+    if (e.target.value.length < 20) {
+      setCustomSkill({ name: e.target.value });
+    } else {
+      e.preventDefault();
+      e.target.value = customSkill.name.slice(0, 20);
+    }
+  };
+
+  const handleCustomSkillAdd = (e) => {
+    if (customSkill.name == "") return e.preventDefault();
+    else if (skillCount < 6) {
+      e.preventDefault();
+      e.target.value = "";
+      const currentSkills = selectedSkills;
+      customSkill.isChecked = true;
+      customSkill.custom = true;
+      currentSkills.push(customSkill);
+      setSelectedSkills(currentSkills);
+      const skillsArray = skills;
+      skillsArray.push(customSkill);
+      setSkills(skillsArray);
+      setCustomSkill({ name: "" });
+    } else e.preventDefault();
   };
 
   const displayForm = () => {
@@ -92,9 +124,9 @@ const Skills = (props) => {
                 <div key={index} className="skill-choice-container">
                   <label>{skill.name}</label>
                   <input
-                    // onClick={(e) => this.addSkill(e, skill)}
-                    onClick={(e) => handleSelectingSkills(e, skill)}
                     type="checkbox"
+                    checked={skill.isChecked}
+                    onChange={(e) => handleSelectingSkills(e, skill)}
                   />
                 </div>
               );
@@ -106,12 +138,9 @@ const Skills = (props) => {
               placeholder="Enter skill name..."
               id="custom-text"
               type="text"
-              // onChange={(e) => this.handleCustomSkillChange(e)}
+              onChange={(e) => handleCustomSkillEdit(e)}
             />
-            <button
-              // onClick={(e) => this.handleCustomSkillAdd(e)}
-              className="btn"
-            >
+            <button onClick={(e) => handleCustomSkillAdd(e)} className="btn">
               ADD
             </button>
           </div>
